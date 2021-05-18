@@ -31,7 +31,7 @@
     "cypress/globals": true
   },
   "rules": {
-    "prettier/prettier": ["error"],
+    "prettier/prettier": ["off", { "singleQuote": true }],
     "object-curly-newline": 0,
     "no-class-assign": 0,
     "no-param-reassign": 0,

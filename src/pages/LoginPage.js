@@ -6,6 +6,7 @@ import { useSession, useDispatch } from 'hooks';
 import LoginForm from 'components/user/LoginForm';
 import { login } from 'state/actions/userActions';
 import routes from 'constants/routesPaths';
+import { ReactComponent as Iphone6 } from 'assets/iphone6.svg';
 
 const LoginPage = () => {
   const { authenticated } = useSession();
@@ -16,14 +17,22 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
-      <p>
-        <FormattedMessage id="login.title" />
-      </p>
-      <LoginForm onSubmit={loginRequest} />
-      <Link to={routes.signUp}>
-        <FormattedMessage id="login.signup" />
-      </Link>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center'
+      }}
+    >
+      <div style={{ flex: 1 }}>
+        <LoginForm onSubmit={loginRequest} />
+        <Link to={routes.signUp}>
+          <FormattedMessage id="login.signup" />
+        </Link>
+      </div>
+      <div style={{ flex: 1 }}>
+        <Iphone6 />
+      </div>
     </div>
   );
 };

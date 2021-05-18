@@ -53,7 +53,7 @@ export const LoginForm = ({ onSubmit }) => {
   );
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ width: '200px', margin: 'auto' }}>
       {status === REJECTED && <strong>{error}</strong>}
       <div>
         <Input
@@ -63,7 +63,7 @@ export const LoginForm = ({ onSubmit }) => {
           {...inputProps(fields.email)}
         />
       </div>
-      <div>
+      <div style={{ marginBottom: 10 }}>
         <Input
           name="password"
           type="password"
@@ -71,7 +71,10 @@ export const LoginForm = ({ onSubmit }) => {
           {...inputProps(fields.password)}
         />
       </div>
-      <button type="submit">
+      <button
+        type="submit"
+        style={{ color: '#fff', backgroundColor: '#000', width: '100%', padding: 5 }}
+      >
         <FormattedMessage id="login.form.submit" />
       </button>
       {status === PENDING && <Loading />}
