@@ -24,6 +24,11 @@ h6 {
   line-height: 32px;
 }
 
+hr {
+  border: 0.5px solid #000;
+  margin: 15px 0;
+}
+
 .loading-wrapper {
   align-items: center;
   display: flex;
@@ -95,7 +100,6 @@ h6 {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   height: 100vh;
 }
 
