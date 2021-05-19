@@ -1,0 +1,12 @@
+.login-form-container {
+  max-width: 340px;
+  margin: auto;
+}
+
+.login-form {
+  &_title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+}

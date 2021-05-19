@@ -9,6 +9,8 @@ import Input from 'components/common/Input';
 import { login as loginValidations } from 'utils/constraints';
 import { useStatus, useForm, useValidation, useTextInputProps } from 'hooks';
 import { login } from 'state/actions/userActions';
+import { ReactComponent as Smilies } from 'assets/smilies.svg';
+import './loginForm.scss';
 
 const messages = defineMessages({
   email: { id: 'login.form.email' },
@@ -53,32 +55,38 @@ export const LoginForm = ({ onSubmit }) => {
   );
 
   return (
-    <form onSubmit={handleSubmit} style={{ width: '200px', margin: 'auto' }}>
-      {status === REJECTED && <strong>{error}</strong>}
-      <div>
-        <Input
-          name="email"
-          type="email"
-          label={intl.formatMessage(messages.email)}
-          {...inputProps(fields.email)}
-        />
-      </div>
-      <div style={{ marginBottom: 10 }}>
-        <Input
-          name="password"
-          type="password"
-          label={intl.formatMessage(messages.password)}
-          {...inputProps(fields.password)}
-        />
-      </div>
-      <button
-        type="submit"
-        style={{ color: '#fff', backgroundColor: '#000', width: '100%', padding: 5 }}
-      >
-        <FormattedMessage id="login.form.submit" />
-      </button>
-      {status === PENDING && <Loading />}
-    </form>
+    <div className="login-form-container">
+      <Smilies />
+      <h2 className="login-form_title">TARGET MVD</h2>
+      <h4>Find people near you & Connect</h4>
+      <p>
+        Create a target wherever on the map, specify your interest: Travel, Dating, Music, etc and
+        start conecting with others who share your interest.
+      </p>
+      <form onSubmit={handleSubmit}>
+        {status === REJECTED && <strong>{error}</strong>}
+        <div>
+          <Input
+            name="email"
+            type="email"
+            label={intl.formatMessage(messages.email)}
+            {...inputProps(fields.email)}
+          />
+        </div>
+        <div style={{ marginBottom: 10 }}>
+          <Input
+            name="password"
+            type="password"
+            label={intl.formatMessage(messages.password)}
+            {...inputProps(fields.password)}
+          />
+        </div>
+        <button type="submit">
+          <FormattedMessage id="login.form.submit" />
+        </button>
+        {status === PENDING && <Loading />}
+      </form>
+    </div>
   );
 };
 

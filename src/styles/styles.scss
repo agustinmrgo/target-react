@@ -1,11 +1,27 @@
 @import 'variables';
 @import '~rootstrap-ui/dist/styles/scss/index';
 @import '~loaders.css/src/animations/ball-scale-multiple';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+}
+
+p {
   font-size: 14px;
   line-height: 26px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
 }
 
 .loading-wrapper {
@@ -32,4 +48,69 @@ body {
   &__logo {
     width: 150px;
   }
+}
+
+.input-container {
+  max-width: 200px;
+  margin: 5px auto 20px auto;
+  // padding: 5px 0 10px 0;
+}
+
+.input {
+  border: 0.5px solid #000;
+  box-sizing: border-box;
+  width: 200px;
+  height: 37px;
+  line-height: 20px;
+}
+
+.input-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.span-error {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.flex-container-centered {
+  display: flex;
+  // align-items: stretch;
+  // justify-content: center;
+  // justify-items: stretch;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-column-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+}
+
+.flex-item {
+  flex: 1;
+}
+
+.blue-background {
+  background-color: #2fbcf7;
+}
+
+button {
+  color: #fff;
+  background-color: #000;
+  padding: 12px;
+  width: 200px;
+  text-transform: uppercase;
 }
