@@ -12,7 +12,7 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>RS React Redux Base</title>
+        <title>Target</title>
       </Helmet>
       <BrowserRouter>
         <Switch>

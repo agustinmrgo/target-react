@@ -54,31 +54,29 @@ export const LoginForm = ({ onSubmit }) => {
   );
 
   return (
-    <div className="login-form-container">
-      <form onSubmit={handleSubmit}>
-        {status === REJECTED && <strong>{error}</strong>}
-        <div>
-          <Input
-            name="email"
-            type="email"
-            label={intl.formatMessage(messages.email)}
-            {...inputProps(fields.email)}
-          />
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          <Input
-            name="password"
-            type="password"
-            label={intl.formatMessage(messages.password)}
-            {...inputProps(fields.password)}
-          />
-        </div>
-        <button type="submit" className="sign-in-button">
-          <FormattedMessage id="login.form.submit" />
-        </button>
-        {status === PENDING && <Loading />}
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      {status === REJECTED && <strong className="error">{error}</strong>}
+      <div>
+        <Input
+          name="email"
+          type="email"
+          label={intl.formatMessage(messages.email)}
+          {...inputProps(fields.email)}
+        />
+      </div>
+      <div>
+        <Input
+          name="password"
+          type="password"
+          label={intl.formatMessage(messages.password)}
+          {...inputProps(fields.password)}
+        />
+      </div>
+      <button type="submit" className="sign-in-button">
+        <FormattedMessage id="login.form.submit" />
+      </button>
+      {status === PENDING && <Loading />}
+    </form>
   );
 };
 

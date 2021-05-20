@@ -19,7 +19,7 @@ const Input = ({ label, name, value, onChange, errors, active, touched, ...props
         </label>
       )}
       <div className="input-container">
-        <input name={name} value={value} onChange={onChange} {...props} className="input" />
+        <input name={name} value={value} onChange={onChange} {...props} />
         {touched && errors && (
           <span className="span-error">
             <FormattedMessage

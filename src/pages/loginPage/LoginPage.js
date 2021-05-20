@@ -23,9 +23,9 @@ const LoginPage = () => {
 
   return (
     <div className="flex-container-centered">
-      <div className="flex-item flex-column-container">
+      <div className="flex-item flex-column-container left-side">
         <div className="login-text">
-          <Smilies />
+          <Smilies className="smilies" />
           <h2 className="login_title">TARGET MVD</h2>
           <h4>Find people near you & Connect</h4>
           <p>
@@ -38,18 +38,18 @@ const LoginPage = () => {
           <p className="forgot-password">Forgot your password?</p>
         </div>
         <p className="sign-in-facebook">Connect with facebook</p>
-        <hr style={{ width: 120 }} />
-        <NavLink to={routes.signUp} className="signup-button selected">
+        <hr />
+        <NavLink to={routes.signUp} className="signup-button">
           <FormattedMessage id="login.signup" />
         </NavLink>
       </div>
 
       <div className="flex-item blue-background flex-column-container">
-        <Iphone6 style={{ height: 650 }} />
+        <Iphone6 className="iphone-6" />
         <AppStoreBtn />
         <div className="flex-container social-buttons-container">
-          <FacebookBtn className="" />
-          <TwitterBtn className="" />
+          <FacebookBtn />
+          <TwitterBtn />
         </div>
       </div>
     </div>

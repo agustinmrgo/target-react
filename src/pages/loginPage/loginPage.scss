@@ -4,10 +4,6 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.65px;
-}
-
-.selected {
-  color: #000;
   text-decoration: none;
 }
 
@@ -15,10 +11,6 @@
   margin: 20px 0;
   width: 100px;
   justify-content: space-around;
-}
-
-.social-button-flex {
-  justify-content: space-between;
 }
 
 .sign-in-facebook {
@@ -43,12 +35,32 @@
 }
 
 .login-text {
-  max-width: 345px;
-  margin-bottom: 40px;
+  max-width: 34rem;
+  margin-bottom: 5.3rem;
 }
 
 .forgot-password {
   font-size: 11px;
   line-height: 15px;
   font-weight: 600;
+}
+
+.left-side {
+  min-width: 55rem;
+}
+
+.right-side {
+  min-width: 55rem;
+}
+
+.iphone-6 {
+  max-height: 65rem;
+}
+
+.smilies {
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  width: 12rem;
 }
