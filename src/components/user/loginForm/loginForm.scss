@@ -1,0 +1,12 @@
+@import '../../../styles/colors.scss';
+
+.sign-in-button {
+  margin-bottom: 15px;
+}
+
+.error {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 1rem;
+  color: $error-red;
+}

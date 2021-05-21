@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 import { useSession } from 'hooks';
 import RouteFromPath from 'components/routes/RouteFromPath';
 import routes from '../routes';
-import Header from './common/Header';
 
 const App = () => {
   const { authenticated } = useSession();
@@ -13,9 +12,8 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>RS React Redux Base</title>
+        <title>Target</title>
       </Helmet>
-      <Header />
       <BrowserRouter>
         <Switch>
           {routes.map((route, index) => (

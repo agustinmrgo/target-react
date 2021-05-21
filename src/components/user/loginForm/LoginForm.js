@@ -9,6 +9,7 @@ import Input from 'components/common/Input';
 import { login as loginValidations } from 'utils/constraints';
 import { useStatus, useForm, useValidation, useTextInputProps } from 'hooks';
 import { login } from 'state/actions/userActions';
+import './loginForm.scss';
 
 const messages = defineMessages({
   email: { id: 'login.form.email' },
@@ -54,7 +55,7 @@ export const LoginForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {status === REJECTED && <strong>{error}</strong>}
+      {status === REJECTED && <strong className="error">{error}</strong>}
       <div>
         <Input
           name="email"
@@ -71,7 +72,7 @@ export const LoginForm = ({ onSubmit }) => {
           {...inputProps(fields.password)}
         />
       </div>
-      <button type="submit">
+      <button type="submit" className="sign-in-button">
         <FormattedMessage id="login.form.submit" />
       </button>
       {status === PENDING && <Loading />}
