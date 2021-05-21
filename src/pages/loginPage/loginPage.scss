@@ -1,5 +1,7 @@
+@import '../../styles/colors.scss';
+
 .signup-button {
-  color: #000;
+  color: $black;
   line-height: 15px;
   font-size: 11px;
   text-transform: uppercase;
@@ -43,14 +45,6 @@
   font-size: 11px;
   line-height: 15px;
   font-weight: 600;
-}
-
-.left-side {
-  min-width: 55rem;
-}
-
-.right-side {
-  min-width: 55rem;
 }
 
 .iphone-6 {

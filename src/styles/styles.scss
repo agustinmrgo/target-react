@@ -58,7 +58,7 @@ hr {
 
 .input-container {
   max-width: 20rem;
-  margin: 0.5rem auto 2rem auto;
+  margin: 0.5rem auto 2rem;
 }
 
 input {
@@ -97,6 +97,7 @@ input {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  min-width: 55rem;
   height: 100vh;
 }
 
