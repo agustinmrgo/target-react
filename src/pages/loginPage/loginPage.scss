@@ -1,0 +1,60 @@
+@import '../../styles/colors.scss';
+
+.signup-button {
+  color: $black;
+  line-height: 15px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.65px;
+  text-decoration: none;
+}
+
+.social-buttons-container {
+  margin: 20px 0;
+  width: 100px;
+  justify-content: space-around;
+}
+
+.sign-in-facebook {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  line-height: 16px;
+}
+
+.login {
+  &_title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+  }
+}
+
+.login-form {
+  margin-bottom: 50px;
+}
+
+.login-text {
+  max-width: 34rem;
+  margin-bottom: 5.3rem;
+}
+
+.forgot-password {
+  font-size: 11px;
+  line-height: 15px;
+  font-weight: 600;
+}
+
+.iphone-6 {
+  max-height: 65rem;
+}
+
+.smilies {
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  width: 12rem;
+}

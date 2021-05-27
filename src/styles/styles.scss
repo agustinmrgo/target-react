@@ -27,3 +27,68 @@
     width: 150px;
   }
 }
+
+.input-container {
+  max-width: 20rem;
+  margin: 0.5rem auto 2rem;
+}
+
+input {
+  border: 0.1rem solid $black;
+  width: 20rem;
+  height: 3.7rem;
+  line-height: 2rem;
+}
+
+.input-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.span-error {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+.flex-container-centered {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 55rem;
+  height: 100vh;
+}
+
+.flex-item {
+  flex: 1;
+}
+
+.blue-background {
+  background-color: $primary-blue;
+}
+
+button {
+  color: $white;
+  background-color: $black;
+  padding: 1.2rem;
+  width: 20rem;
+  text-transform: uppercase;
+  letter-spacing: 0.165rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
