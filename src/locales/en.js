@@ -4,7 +4,7 @@ export default {
 
   'login.form.email': 'Email',
   'login.form.password': 'Password',
-  'login.form.submit': 'Submit',
+  'login.form.submit': 'Sign in',
 
   'login.forgot_password': 'Forgot your password?',
 
