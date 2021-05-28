@@ -82,7 +82,6 @@ input {
 .flex-container-centered {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   text-align: center;
   height: 100vh;
@@ -97,8 +96,7 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 40rem;
-  height: 100vh;
+  min-width: 45rem;
 }
 
 .flex-item {
@@ -123,25 +121,4 @@ button {
 
 .iphone-6 {
   max-height: 65rem;
-  // max-width: 45rem;
-}
-
-.svg-container {
-  // display: inline-block;
-  position: relative;
-  width: 100%;
-  // padding-bottom: 100%;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
-.svg-content {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.logo {
-  background: url('data:image/svg+xml;base64,[data]');
 }
