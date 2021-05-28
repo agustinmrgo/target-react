@@ -12,9 +12,19 @@ const LandingLayout = ({ leftSideElement, rightSideElement }) => {
       <div className="flex-item flex-column-container blue-background">
         {rightSideElement || (
           <>
-            <Iphone6 className="iphone-6" />
+            <div className="svg-container">
+              {/* <object
+                alt="iphone 6 image"
+                type="image/svg+xml"
+                data="../../../assets/iphone6"
+                width="100%"
+                height="100%"
+                className="svg-content"
+              /> */}
+              <Iphone6 className="iphone-6" />
+            </div>
             <AppStoreBtn />
-            <div className="flex-container social-buttons-container">
+            <div className="flex-container social-buttons-container logo">
               <FacebookBtn />
               <TwitterBtn />
             </div>
