@@ -1,0 +1,16 @@
+@import '../../styles/colors.scss';
+
+.signup-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.3rem;
+}
+
+.signin-button {
+  color: $black;
+  line-height: 15px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.65px;
+  text-decoration: none;
+}

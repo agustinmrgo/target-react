@@ -4,10 +4,10 @@ import { FormattedMessage } from 'react-intl';
 
 import { useSession, useDispatch } from 'hooks';
 import { signUp } from 'state/actions/userActions';
-import SignUpForm from 'components/user/SignUpForm';
+import SignUpForm from 'components/user/signupForm/SignUpForm';
 import routes from 'constants/routesPaths';
-import './signupPage.scss';
 import LandingLayout from 'components/common/LandingLayout';
+import './signupPage.scss';
 
 const SignUpPage = () => {
   const { authenticated } = useSession();
@@ -21,14 +21,14 @@ const SignUpPage = () => {
     <LandingLayout
       leftSideElement={
         <>
-          <p>
+          <h2 className="signup-title">
             <FormattedMessage id="signup.title" />
-          </p>
-          <div className="login-form">
+          </h2>
+          <div>
             <SignUpForm onSubmit={signUpRequest} />
           </div>
           <hr />
-          <NavLink to={routes.login}>
+          <NavLink to={routes.login} className="signin-button">
             <FormattedMessage id="signup.signin" />
           </NavLink>
         </>

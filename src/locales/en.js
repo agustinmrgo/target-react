@@ -11,6 +11,8 @@ export default {
   'signup.title': 'SIGN UP',
   'signup.signin': 'Sign in',
   'signup.form.passconfirmation': 'Password confirmation',
+  'signup.form.name': 'Name',
+  'signup.form.gender': 'Gender',
 
   'logout.button': 'LOGOUT',
 

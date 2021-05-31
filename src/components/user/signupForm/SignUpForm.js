@@ -9,11 +9,14 @@ import Input from 'components/common/Input';
 import { signUp as signUpValidations } from 'utils/constraints';
 import { useStatus, useForm, useValidation, useTextInputProps } from 'hooks';
 import { signUp } from 'state/actions/userActions';
+import './signupForm.scss';
 
 const messages = defineMessages({
+  name: { id: 'signup.form.name' },
   email: { id: 'login.form.email' },
   password: { id: 'login.form.password' },
-  passConfirmation: { id: 'signup.form.passconfirmation' }
+  passConfirmation: { id: 'signup.form.passconfirmation' },
+  gender: { id: 'signup.form.gender' }
 });
 
 const fields = {
@@ -59,6 +62,9 @@ export const SignUpForm = ({ onSubmit }) => {
     <form onSubmit={handleSubmit}>
       {status === REJECTED && <strong>{error}</strong>}
       <div>
+        <Input name="name" label={intl.formatMessage(messages.name)} {...inputProps(fields.name)} />
+      </div>
+      <div>
         <Input
           name="email"
           label={intl.formatMessage(messages.email)}
@@ -82,8 +88,15 @@ export const SignUpForm = ({ onSubmit }) => {
           {...inputProps(fields.passwordConfirmation)}
         />
       </div>
-      <button type="submit">
-        <FormattedMessage id="login.form.submit" />
+      <div>
+        <Input
+          name="gender"
+          label={intl.formatMessage(messages.gender)}
+          {...inputProps(fields.gender)}
+        />
+      </div>
+      <button type="submit" className="submit-button">
+        <FormattedMessage id="login.signup" />
       </button>
       {status === PENDING && <Loading />}
     </form>
