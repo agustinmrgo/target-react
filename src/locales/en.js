@@ -13,6 +13,8 @@ export default {
   'signup.form.passconfirmation': 'Password confirmation',
   'signup.form.name': 'Name',
   'signup.form.gender': 'Gender',
+  'signup.form.minpassword': 'MIN. 6 CHARACTERS LONG',
+  'signup.form.minpassword_validation': 'Must be at least 6 characters',
 
   'logout.button': 'LOGOUT',
 

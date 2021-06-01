@@ -13,11 +13,7 @@ const Input = ({ label, name, value, onChange, errors, active, touched, ...props
 
   return (
     <div>
-      {label && (
-        <label htmlFor={name} className="input-label">
-          {label}
-        </label>
-      )}
+      {label && <label htmlFor={name}>{label}</label>}
       <div className="input-container">
         <input name={name} value={value} onChange={onChange} {...props} />
         {touched && errors && (

@@ -65,10 +65,12 @@ input {
   border: 0.1rem solid $black;
   width: 20rem;
   height: 3.7rem;
-  line-height: 2rem;
+  line-height: 1.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.15rem;
 }
 
-.input-label {
+label {
   font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;

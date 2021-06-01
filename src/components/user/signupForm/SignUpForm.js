@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { func } from 'prop-types';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import Select from 'react-select';
 
 import { REJECTED, PENDING } from 'constants/actionStatusConstants';
 
@@ -16,13 +17,61 @@ const messages = defineMessages({
   email: { id: 'login.form.email' },
   password: { id: 'login.form.password' },
   passConfirmation: { id: 'signup.form.passconfirmation' },
-  gender: { id: 'signup.form.gender' }
+  gender: { id: 'signup.form.gender' },
+  minpassword: { id: 'signup.form.minpassword' }
 });
 
 const fields = {
+  name: 'name',
   email: 'email',
   password: 'password',
-  passwordConfirmation: 'passwordConfirmation'
+  passwordConfirmation: 'passwordConfirmation',
+  gender: 'gender'
+};
+
+const options = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
+  { value: 'other', label: 'Other' }
+];
+
+const customStyles = {
+  container: provided => ({ ...provided, marginTop: '0.5rem' }),
+  menu: provided => ({
+    ...provided,
+    border: '1px solid black',
+    borderRadius: 0,
+    padding: 0
+  }),
+  menuList: provided => ({ ...provided, padding: 0 }),
+  control: provided => ({
+    ...provided,
+    border: '1px solid black',
+    borderRadius: 0
+  }),
+  singleValue: provided => ({
+    ...provided,
+    fontSize: '1.1rem',
+    letterSpacing: '0.07rem',
+    textAlign: 'center',
+    fontWeight: 600
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    fontSize: '1.3rem',
+    letterSpacing: '0.195rem',
+    color: state.isSelected ? 'white' : 'black',
+    backgroundColor: state.isSelected ? 'black' : 'white',
+    padding: '0.5rem'
+  }),
+  placeholder: provided => ({
+    ...provided,
+    color: 'black',
+    fontSize: '1rem',
+    fontWeight: 600,
+    textTransform: 'uppercase',
+    letterSpacing: '0.165rem'
+  })
 };
 
 export const SignUpForm = ({ onSubmit }) => {
@@ -60,7 +109,7 @@ export const SignUpForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {status === REJECTED && <strong>{error}</strong>}
+      {status === REJECTED && <strong className="error">{error}</strong>}
       <div>
         <Input name="name" label={intl.formatMessage(messages.name)} {...inputProps(fields.name)} />
       </div>
@@ -77,6 +126,7 @@ export const SignUpForm = ({ onSubmit }) => {
           name="password"
           label={intl.formatMessage(messages.password)}
           type="password"
+          placeholder={intl.formatMessage(messages.minpassword)}
           {...inputProps(fields.password)}
         />
       </div>
@@ -89,11 +139,25 @@ export const SignUpForm = ({ onSubmit }) => {
         />
       </div>
       <div>
-        <Input
+        <label htmlFor="gender">{intl.formatMessage(messages.gender)}</label>
+        <Select
+          name="gender"
+          isSearchable={false}
+          options={options}
+          styles={customStyles}
+          textFieldProps={{
+            label: 'Label',
+            InputLabelProps: {
+              shrink: true
+            }
+          }}
+          placeholder="Select your gender"
+        />
+        {/* <Input
           name="gender"
           label={intl.formatMessage(messages.gender)}
           {...inputProps(fields.gender)}
-        />
+        /> */}
       </div>
       <button type="submit" className="submit-button">
         <FormattedMessage id="login.signup" />

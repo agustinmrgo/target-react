@@ -16,7 +16,11 @@ export const signUp = {
     email: { message: 'email.invalid' }
   },
   password: {
-    presence: { message: 'password.presence' }
+    presence: { message: 'password.presence' },
+    length: {
+      minimum: 6,
+      message: 'must be at least 6 characters'
+    }
   },
   passwordConfirmation: {
     presence: { message: 'passwordConfirmation.presence' },
