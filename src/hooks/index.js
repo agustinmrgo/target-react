@@ -5,3 +5,4 @@ export { default as useValidation } from './useValidation';
 export { default as useTextInputProps } from './useTextInputProps';
 export { default as useSelectOptions } from './useSelectOptions';
 export { default as useStatus } from './useStatus';
+export { default as useSelectProps } from './useSelectProps';

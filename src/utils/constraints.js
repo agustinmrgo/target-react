@@ -18,8 +18,8 @@ export const signUp = {
   password: {
     presence: { message: 'password.presence' },
     length: {
-      minimum: 6,
-      message: 'must be at least 6 characters'
+      minimum: 8,
+      message: 'password.length'
     }
   },
   passwordConfirmation: {
@@ -28,6 +28,12 @@ export const signUp = {
       attribute: 'password',
       message: 'passwordConfirmation.equality'
     }
+  },
+  gender: {
+    presence: { message: 'gender.presence' }
+  },
+  name: {
+    presence: { message: 'name.presence' }
   }
 };
 

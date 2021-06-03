@@ -1,14 +1,14 @@
 import React, { memo } from 'react';
 import { func } from 'prop-types';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
-import Select from 'react-select';
 
 import { REJECTED, PENDING } from 'constants/actionStatusConstants';
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
+import Select from 'components/common/Select';
 import { signUp as signUpValidations } from 'utils/constraints';
-import { useStatus, useForm, useValidation, useTextInputProps } from 'hooks';
+import { useStatus, useForm, useValidation, useTextInputProps, useSelectProps } from 'hooks';
 import { signUp } from 'state/actions/userActions';
 import './signupForm.scss';
 
@@ -18,7 +18,8 @@ const messages = defineMessages({
   password: { id: 'login.form.password' },
   passConfirmation: { id: 'signup.form.passconfirmation' },
   gender: { id: 'signup.form.gender' },
-  minpassword: { id: 'signup.form.minpassword' }
+  minpassword: { id: 'signup.form.minpassword' },
+  genderPlaceholder: { id: 'signup.form.gender_placeholder' }
 });
 
 const fields = {
@@ -34,45 +35,6 @@ const options = [
   { value: 'female', label: 'Female' },
   { value: 'other', label: 'Other' }
 ];
-
-const customStyles = {
-  container: provided => ({ ...provided, marginTop: '0.5rem' }),
-  menu: provided => ({
-    ...provided,
-    border: '1px solid black',
-    borderRadius: 0,
-    padding: 0
-  }),
-  menuList: provided => ({ ...provided, padding: 0 }),
-  control: provided => ({
-    ...provided,
-    border: '1px solid black',
-    borderRadius: 0
-  }),
-  singleValue: provided => ({
-    ...provided,
-    fontSize: '1.1rem',
-    letterSpacing: '0.07rem',
-    textAlign: 'center',
-    fontWeight: 600
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    fontSize: '1.3rem',
-    letterSpacing: '0.195rem',
-    color: state.isSelected ? 'white' : 'black',
-    backgroundColor: state.isSelected ? 'black' : 'white',
-    padding: '0.5rem'
-  }),
-  placeholder: provided => ({
-    ...provided,
-    color: 'black',
-    fontSize: '1rem',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.165rem'
-  })
-};
 
 export const SignUpForm = ({ onSubmit }) => {
   const intl = useIntl();
@@ -98,6 +60,16 @@ export const SignUpForm = ({ onSubmit }) => {
   );
 
   const inputProps = useTextInputProps(
+    handleValueChange,
+    handleFocus,
+    handleBlur,
+    values,
+    errors,
+    activeFields,
+    touched
+  );
+
+  const selectProps = useSelectProps(
     handleValueChange,
     handleFocus,
     handleBlur,
@@ -139,25 +111,14 @@ export const SignUpForm = ({ onSubmit }) => {
         />
       </div>
       <div>
-        <label htmlFor="gender">{intl.formatMessage(messages.gender)}</label>
         <Select
           name="gender"
+          label={intl.formatMessage(messages.gender)}
           isSearchable={false}
           options={options}
-          styles={customStyles}
-          textFieldProps={{
-            label: 'Label',
-            InputLabelProps: {
-              shrink: true
-            }
-          }}
-          placeholder="Select your gender"
+          placeholder={intl.formatMessage(messages.genderPlaceholder)}
+          {...selectProps(fields.gender)}
         />
-        {/* <Input
-          name="gender"
-          label={intl.formatMessage(messages.gender)}
-          {...inputProps(fields.gender)}
-        /> */}
       </div>
       <button type="submit" className="submit-button">
         <FormattedMessage id="login.signup" />
