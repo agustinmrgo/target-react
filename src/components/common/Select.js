@@ -47,7 +47,6 @@ const customStyles = {
 const Select = ({
   label,
   name,
-  value,
   options,
   onChange,
   placeholder,
@@ -58,7 +57,7 @@ const Select = ({
 }) => (
   <>
     {label && <label htmlFor={name}>{label}</label>}
-    <div className="select-container">
+    <div>
       <ReactSelect
         name={name}
         options={options}
@@ -82,7 +81,6 @@ const Select = ({
 Select.propTypes = {
   name: string.isRequired,
   label: string,
-  value: string,
   onChange: func.isRequired,
   placeholder: string,
   errors: arrayOf(string),
