@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch as useReduxDispatch } from 'react-redux';
 
-export default (action, ...dependencies) => {
-  const dispatch = useDispatch();
+export const useDispatch = (action, ...dependencies) => {
+  const dispatch = useReduxDispatch();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   return useCallback(payload => dispatch(action(payload)), [dispatch, action, ...dependencies]);
 };

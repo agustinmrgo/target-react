@@ -23,13 +23,11 @@
   line-height: 16px;
 }
 
-.login {
-  &_title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-  }
+.login-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
 }
 
 .login-form {
@@ -45,10 +43,6 @@
   font-size: 11px;
   line-height: 15px;
   font-weight: 600;
-}
-
-.iphone-6 {
-  max-height: 65rem;
 }
 
 .smilies {

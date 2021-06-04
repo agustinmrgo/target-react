@@ -6,21 +6,35 @@ import { REJECTED, PENDING } from 'constants/actionStatusConstants';
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
+import Select from 'components/common/Select';
 import { signUp as signUpValidations } from 'utils/constraints';
-import { useStatus, useForm, useValidation, useTextInputProps } from 'hooks';
+import { useStatus, useForm, useValidation, useTextInputProps, useSelectProps } from 'hooks';
 import { signUp } from 'state/actions/userActions';
+import './signupForm.scss';
 
 const messages = defineMessages({
+  name: { id: 'signup.form.name' },
   email: { id: 'login.form.email' },
   password: { id: 'login.form.password' },
-  passConfirmation: { id: 'signup.form.passconfirmation' }
+  passConfirmation: { id: 'signup.form.passconfirmation' },
+  gender: { id: 'signup.form.gender' },
+  minpassword: { id: 'signup.form.minpassword' },
+  genderPlaceholder: { id: 'signup.form.gender_placeholder' }
 });
 
 const fields = {
+  name: 'name',
   email: 'email',
   password: 'password',
-  passwordConfirmation: 'passwordConfirmation'
+  passwordConfirmation: 'passwordConfirmation',
+  gender: 'gender'
 };
+
+const options = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
+  { value: 'other', label: 'Other' }
+];
 
 export const SignUpForm = ({ onSubmit }) => {
   const intl = useIntl();
@@ -55,9 +69,22 @@ export const SignUpForm = ({ onSubmit }) => {
     touched
   );
 
+  const selectProps = useSelectProps(
+    handleValueChange,
+    handleFocus,
+    handleBlur,
+    values,
+    errors,
+    activeFields,
+    touched
+  );
+
   return (
     <form onSubmit={handleSubmit}>
-      {status === REJECTED && <strong>{error}</strong>}
+      {status === REJECTED && <strong className="error">{error}</strong>}
+      <div>
+        <Input name="name" label={intl.formatMessage(messages.name)} {...inputProps(fields.name)} />
+      </div>
       <div>
         <Input
           name="email"
@@ -71,6 +98,7 @@ export const SignUpForm = ({ onSubmit }) => {
           name="password"
           label={intl.formatMessage(messages.password)}
           type="password"
+          placeholder={intl.formatMessage(messages.minpassword)}
           {...inputProps(fields.password)}
         />
       </div>
@@ -82,8 +110,18 @@ export const SignUpForm = ({ onSubmit }) => {
           {...inputProps(fields.passwordConfirmation)}
         />
       </div>
-      <button type="submit">
-        <FormattedMessage id="login.form.submit" />
+      <div>
+        <Select
+          name="gender"
+          label={intl.formatMessage(messages.gender)}
+          isSearchable={false}
+          options={options}
+          placeholder={intl.formatMessage(messages.genderPlaceholder)}
+          {...selectProps(fields.gender)}
+        />
+      </div>
+      <button type="submit" className="submit-button">
+        <FormattedMessage id="login.signup" />
       </button>
       {status === PENDING && <Loading />}
     </form>
