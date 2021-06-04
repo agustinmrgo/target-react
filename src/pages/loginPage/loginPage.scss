@@ -23,13 +23,11 @@
   line-height: 16px;
 }
 
-.login {
-  &_title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-  }
+.login-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
 }
 
 .login-form {

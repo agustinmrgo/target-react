@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { arrayOf, bool, func, shape, string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ReactSelect from 'react-select';
@@ -55,37 +55,29 @@ const Select = ({
   active,
   touched,
   ...props
-}) => {
-  // Register field in the form
-  useEffect(() => {
-    onChange({ value }, true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <>
-      {label && <label htmlFor={name}>{label}</label>}
-      <div className="select-container">
-        <ReactSelect
-          name={name}
-          options={options}
-          styles={customStyles}
-          placeholder={placeholder}
-          onChange={onChange}
-          {...props}
-        />
-        {touched && errors && (
-          <span className="span-error">
-            <FormattedMessage
-              id={parseInputErrors(errors)}
-              defaultMessage={parseInputErrors(errors)}
-            />
-          </span>
-        )}
-      </div>
-    </>
-  );
-};
+}) => (
+  <>
+    {label && <label htmlFor={name}>{label}</label>}
+    <div className="select-container">
+      <ReactSelect
+        name={name}
+        options={options}
+        styles={customStyles}
+        placeholder={placeholder}
+        onChange={onChange}
+        {...props}
+      />
+      {touched && errors && (
+        <span className="span-error">
+          <FormattedMessage
+            id={parseInputErrors(errors)}
+            defaultMessage={parseInputErrors(errors)}
+          />
+        </span>
+      )}
+    </div>
+  </>
+);
 
 Select.propTypes = {
   name: string.isRequired,

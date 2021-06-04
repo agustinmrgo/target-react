@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
  * const { status, error } = useStatus(login)
  */
 
-export default action =>
+export const useStatus = action =>
   useSelector(({ statusReducer }) => {
     const { status, error } = statusReducer[(action?.typePrefix)] || {};
     return {

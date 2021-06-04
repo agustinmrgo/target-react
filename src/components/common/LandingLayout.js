@@ -5,25 +5,23 @@ import { ReactComponent as AppStoreBtn } from 'assets/appstore.svg';
 import { ReactComponent as FacebookBtn } from 'assets/facebook.svg';
 import { ReactComponent as TwitterBtn } from 'assets/twitter.svg';
 
-const LandingLayout = ({ leftSideElement, rightSideElement }) => {
-  return (
-    <div className="flex-container-centered">
-      <div className="flex-item flex-column-container">{leftSideElement}</div>
-      <div className="flex-item flex-column-container blue-background">
-        {rightSideElement || (
-          <>
-            <Iphone6 className="iphone-6" />
-            <AppStoreBtn />
-            <div className="flex-container social-buttons-container logo">
-              <FacebookBtn />
-              <TwitterBtn />
-            </div>
-          </>
-        )}
-      </div>
+const LandingLayout = ({ leftSideElement, rightSideElement }) => (
+  <div className="flex-container-centered">
+    <div className="flex-item flex-column-container">{leftSideElement}</div>
+    <div className="flex-item flex-column-container blue-background">
+      {rightSideElement || (
+        <>
+          <Iphone6 className="iphone-6" />
+          <AppStoreBtn />
+          <div className="flex-container social-buttons-container logo">
+            <FacebookBtn />
+            <TwitterBtn />
+          </div>
+        </>
+      )}
     </div>
-  );
-};
+  </div>
+);
 
 LandingLayout.propTypes = {
   leftSideElement: element.isRequired,

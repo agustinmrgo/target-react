@@ -24,18 +24,25 @@ const LoginPage = () => {
         <>
           <div className="login-text">
             <Smilies className="smilies" />
-            <h2 className="login_title">TARGET MVD</h2>
-            <h4>Find people near you & Connect</h4>
+            <h2 className="login-title">
+              <FormattedMessage id="login.title" />
+            </h2>
+            <h4>
+              <FormattedMessage id="login.subtitle" />
+            </h4>
             <p>
-              Create a target wherever on the map, specify your interest: Travel, Dating, Music, etc
-              and start conecting with others who share your interest.
+              <FormattedMessage id="login.intro" />
             </p>
           </div>
           <div className="login-form">
             <LoginForm onSubmit={loginRequest} />
-            <p className="forgot-password">Forgot your password?</p>
+            <p className="forgot-password">
+              <FormattedMessage id="login.forgot_password" />
+            </p>
           </div>
-          <p className="sign-in-facebook">Connect with facebook</p>
+          <p className="sign-in-facebook">
+            <FormattedMessage id="login.facebook" />
+          </p>
           <hr />
           <NavLink to={routes.signUp} className="signup-button">
             <FormattedMessage id="login.signup" />

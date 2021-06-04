@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-export default (
+export const useTextInputProps = (
   handleValueChange, // callback for when the value changes
   handleFocus, // callback after focus
   handleBlur, // callback after blur
