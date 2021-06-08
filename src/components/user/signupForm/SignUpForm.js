@@ -73,7 +73,6 @@ export const SignUpForm = ({ onSubmit }) => {
     handleValueChange,
     handleFocus,
     handleBlur,
-    values,
     errors,
     activeFields,
     touched
