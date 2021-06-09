@@ -1,63 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useSession } from 'hooks';
-// import { MapContainer, Map, Marker, Popup, TileLayer } from 'react-leaflet';
-// import { Map as LeafletMap, Marker, Popup, TileLayer } from 'react-leaflet';
+import GoogleMapReact from 'google-map-react';
 
 import './homePage.scss';
 
 import LogoutButton from 'components/user/LogoutButton';
 
+const defaultCoords = { lat: -26.851311, lng: -65.702984 };
+
 const HomePage = () => {
+  const [locationStatus, setLocationStatus] = useState('');
+  const [lati, setLati] = useState(-26.851311);
+  const [long, setLong] = useState(-65.702984);
   const { user } = useSession();
-  // const defaultPosition = [48.864716, 2.349]; // Paris position
-  // const position = [51.505, -0.09];
+
+  useEffect(() => {
+    const success = position => {
+      setLati(position.coords.latitude);
+      setLong(position.coords.longitude);
+    };
+    const error = () => setLocationStatus('Unable to retrieve your location');
+    navigator.geolocation.getCurrentPosition(success, error);
+  }, [locationStatus]);
+
   return (
     <div>
       {user && user.email && (
         <div className="map-container">
-          <div className="container-sidebar">
+          <div className="home-sidebar">
             <p>
               <FormattedMessage id="home.welcome" values={user} />
             </p>
+            <LogoutButton />
           </div>
-          <div className="container-main">
-            {/* <LeafletMap center={position} zoom={13}>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker position={position}>
-                <Popup>
-                  A pretty CSS3 popup.
-                  <br />
-                  Easily customizable.
-                </Popup>
-              </Marker>
-            </LeafletMap> */}
-            {/* <Map center={[45.4, -75.7]} zoom={12}>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              />
-            </Map> */}
-            {/* <iframe
-              title="embedded-map"
-              className="map-frame"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOwg_06VPwokRYv534QaPC8g&key=AIzaSyASUUbWw1kTgSYzba64Y7H7T4W8rTlJdfc"
-            /> */}
+          <div className="home-main">
+            <GoogleMapReact
+              defaultCenter={defaultCoords}
+              center={{ lat: lati, lng: long }}
+              defaultZoom={11}
+            >
+              <div lat={lati} lng={long} className="map-marker">
+                Some marker!
+              </div>
+            </GoogleMapReact>
           </div>
         </div>
       )}
-      <br />
-      <br />
-      <br />
-      <LogoutButton />
     </div>
   );
 };
