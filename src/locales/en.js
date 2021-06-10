@@ -24,6 +24,7 @@ export default {
   'logout.button': 'LOGOUT',
 
   'home.welcome': 'Welcome to React Redux Base {email}',
+  'home.current-location': 'You are here!',
 
   // errors
   'email.presence': 'You must enter an email to continue',

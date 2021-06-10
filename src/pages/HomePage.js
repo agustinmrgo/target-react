@@ -3,9 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { useSession } from 'hooks';
 import GoogleMapReact from 'google-map-react';
 
-import './homePage.scss';
-
 import LogoutButton from 'components/user/LogoutButton';
+import MainLayout from 'components/common/MainLayout';
 
 const defaultCoords = { lat: -26.851311, lng: -65.702984 };
 
@@ -25,29 +24,31 @@ const HomePage = () => {
   }, [locationStatus]);
 
   return (
-    <div>
+    <>
       {user && user.email && (
-        <div className="map-container">
-          <div className="home-sidebar">
-            <p>
-              <FormattedMessage id="home.welcome" values={user} />
-            </p>
-            <LogoutButton />
-          </div>
-          <div className="home-main">
+        <MainLayout
+          sidebarContent={
+            <>
+              <p>
+                <FormattedMessage id="home.welcome" values={user} />
+              </p>
+              <LogoutButton />
+            </>
+          }
+          mainContent={
             <GoogleMapReact
               defaultCenter={defaultCoords}
               center={{ lat: lati, lng: long }}
-              defaultZoom={11}
+              defaultZoom={12}
             >
               <div lat={lati} lng={long} className="map-marker">
-                Some marker!
+                <FormattedMessage id="home.current-location" />
               </div>
             </GoogleMapReact>
-          </div>
-        </div>
+          }
+        />
       )}
-    </div>
+    </>
   );
 };
 
