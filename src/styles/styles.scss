@@ -126,3 +126,31 @@ button {
 .iphone-6 {
   max-height: 65rem;
 }
+
+.main-layout-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.main-content {
+  width: 100%;
+}
+
+.siderbar-content {
+  width: 30%;
+}
+
+.map-marker {
+  color: $black;
+  background-color: $primary-blue;
+  padding: 1.2rem 1.8rem;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
