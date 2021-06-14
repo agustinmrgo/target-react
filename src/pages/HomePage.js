@@ -10,8 +10,8 @@ const defaultCoords = { lat: -26.851311, lng: -65.702984 };
 
 const HomePage = () => {
   const [locationStatus, setLocationStatus] = useState('');
-  const [lati, setLati] = useState(-26.851311);
-  const [long, setLong] = useState(-65.702984);
+  const [lati, setLati] = useState(defualtCoords.lat);
+  const [long, setLong] = useState(defaultCoords.lng);
   const { user } = useSession();
 
   useEffect(() => {
