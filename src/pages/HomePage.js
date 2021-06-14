@@ -15,11 +15,11 @@ const HomePage = () => {
   const { user } = useSession();
 
   useEffect(() => {
-    const success = position => {
-      setLati(position.coords.latitude);
-      setLong(position.coords.longitude);
+    const success = ({ coords: { latitude, longitude } }) => {
+      setLati(latitude);
+      setLong(longitude);
     };
-    const error = () => setLocationStatus('Unable to retrieve your location');
+    const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
   }, [locationStatus]);
 
@@ -42,7 +42,7 @@ const HomePage = () => {
               defaultZoom={12}
             >
               <div lat={lati} lng={long} className="map-marker">
-                <FormattedMessage id="home.current-location" />
+                <FormattedMessage id="home.current_location" />
               </div>
             </GoogleMapReact>
           }
