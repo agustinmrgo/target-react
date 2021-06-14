@@ -1,0 +1,45 @@
+@import '../../styles/colors.scss';
+
+.mobile-layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: $primary-blue;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-title {
+  font-weight: 700;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  font-size: 2rem;
+  line-height: 2.7rem;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  background-color: $primary-blue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.topnav a.icon {
+  // background: black;
+  display: block;
+  // position: absolute;
+  font-size: 30px;
+  padding: 4px 18px;
+}
+.active {
+  background-color: $primary-blue;
+  color: white;
+}
