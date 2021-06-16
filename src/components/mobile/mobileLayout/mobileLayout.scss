@@ -1,0 +1,51 @@
+@import '../../../styles/colors.scss';
+
+.mobile-layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-nav {
+  overflow: hidden;
+  background-color: $primary-blue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 7rem;
+}
+
+.nav-title {
+  font-weight: 700;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  font-size: 2rem;
+  line-height: 2.7rem;
+}
+
+.top-nav a {
+  float: left;
+  color: $white;
+  background-color: $primary-blue;
+  text-align: center;
+  padding: 1.4rem 1.6rem;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.top-nav a.icon {
+  display: block;
+  font-size: 3rem;
+  padding: 0.4rem 1.8rem;
+}
+
+.active {
+  background-color: $primary-blue;
+  color: $white;
+}
+
+.mobile-content {
+  position: relative;
+  height: 100%;
+}
