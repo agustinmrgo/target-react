@@ -6,3 +6,4 @@ export { useTextInputProps } from './useTextInputProps';
 export { useSelectOptions } from './useSelectOptions';
 export { useStatus } from './useStatus';
 export { useSelectProps } from './useSelectProps';
+export { useResponsive } from './useResponsive';

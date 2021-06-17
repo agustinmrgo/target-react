@@ -5,7 +5,7 @@ import GoogleMapReact from 'google-map-react';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
-import { DEFAULT_COORDINATES } from '../../../constants/constants';
+import { DEFAULT_COORDINATES } from 'constants/constants';
 import './map.scss';
 
 const Map = ({
