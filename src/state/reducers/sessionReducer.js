@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   loginFulfilled,
+  loginFacebookFulfilled,
   logoutFulfilled,
   signUpFulfilled,
   updateSession
@@ -17,6 +18,9 @@ const sessionSlice = createSlice({
   initialState,
   extraReducers: {
     [loginFulfilled]: (state, { payload }) => {
+      state.user = payload;
+    },
+    [loginFacebookFulfilled]: (state, { payload }) => {
       state.user = payload;
     },
     [signUpFulfilled]: (state, { payload }) => {

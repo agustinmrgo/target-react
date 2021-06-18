@@ -1,11 +1,15 @@
 import React, { memo } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+// import FacebookLogin from 'react-facebook-login';
 
-import { useSession, useDispatch } from 'hooks';
+import { REJECTED, PENDING } from 'constants/actionStatusConstants';
+
+import { useSession, useDispatch, useStatus } from 'hooks';
 import LoginForm from 'components/user/loginForm/LoginForm';
 import LandingLayout from 'components/common/LandingLayout';
-import { login } from 'state/actions/userActions';
+import Loading from 'components/common/Loading';
+import { login, loginFacebook } from 'state/actions/userActions';
 import routes from 'constants/routesPaths';
 import { ReactComponent as Smilies } from 'assets/smilies.svg';
 import './loginPage.scss';
@@ -13,11 +17,12 @@ import './loginPage.scss';
 const LoginPage = () => {
   const { authenticated } = useSession();
   const loginRequest = useDispatch(login);
+  const loginFacebookRequest = useDispatch(loginFacebook);
+  const { status, error } = useStatus(loginFacebook);
 
   if (authenticated) {
     return <Redirect to={routes.index} />;
   }
-
   return (
     <LandingLayout
       leftSideElement={
@@ -35,14 +40,16 @@ const LoginPage = () => {
             </p>
           </div>
           <div className="login-form">
+            {status === REJECTED && <strong className="error">{error}</strong>}
             <LoginForm onSubmit={loginRequest} />
             <p className="forgot-password">
               <FormattedMessage id="login.forgot_password" />
             </p>
+            {status === PENDING && <Loading />}
           </div>
-          <p className="sign-in-facebook">
+          <button className="sign-in-facebook" type="button" onClick={loginFacebookRequest}>
             <FormattedMessage id="login.facebook" />
-          </p>
+          </button>
           <hr />
           <NavLink to={routes.signUp} className="signup-button">
             <FormattedMessage id="login.signup" />

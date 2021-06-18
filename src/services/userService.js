@@ -1,4 +1,5 @@
 import httpClient from 'httpClient';
+import { FACEBOOK_ACCESS_TOKEN } from 'constants/constants';
 
 class UserService {
   static login(user) {
@@ -11,6 +12,10 @@ class UserService {
 
   static signUp(user) {
     return httpClient.post('/users', user);
+  }
+
+  static loginFacebook() {
+    return httpClient.post('/users/facebook', { access_token: FACEBOOK_ACCESS_TOKEN });
   }
 }
 
