@@ -78,7 +78,6 @@
     "query-string": "5.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-facebook-login": "4.1.1",
     "react-helmet": "5.2.1",
     "react-intl": "4.2.2",
     "react-loaders": "3.0.1",
