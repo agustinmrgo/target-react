@@ -1,7 +1,7 @@
 import React from 'react';
 
 import routesPaths from 'constants/routesPaths';
-import HomePage from 'pages/HomePage';
+import HomePage from 'pages/homePage/HomePage';
 import LoginPage from 'pages/loginPage/LoginPage';
 import SignUpPage from 'pages/signupPage/SignUpPage';
 import NotFoundPage from 'pages/NotFoundPage';
