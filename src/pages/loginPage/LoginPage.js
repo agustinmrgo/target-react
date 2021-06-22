@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-// import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import { REJECTED, PENDING } from 'constants/actionStatusConstants';
 
@@ -17,8 +17,12 @@ import './loginPage.scss';
 const LoginPage = () => {
   const { authenticated } = useSession();
   const loginRequest = useDispatch(login);
-  const loginFacebookRequest = useDispatch(loginFacebook);
+  // const loginFacebookRequest = useDispatch(loginFacebook);
   const { status, error } = useStatus(loginFacebook);
+
+  // const responseFacebook = res => {
+  // console.log('RESPONSE!', res);
+  // };
 
   if (authenticated) {
     return <Redirect to={routes.index} />;
@@ -47,9 +51,20 @@ const LoginPage = () => {
             </p>
             {status === PENDING && <Loading />}
           </div>
-          <button className="sign-in-facebook" type="button" onClick={loginFacebookRequest}>
+          {/* <button className="sign-in-facebook" type="button" onClick={loginFacebookRequest}>
             <FormattedMessage id="login.facebook" />
-          </button>
+          </button> */}
+          <FacebookLogin
+            appId="166925907359293"
+            autoLoad
+            // callback={responseFacebook}
+            render={renderProps => (
+              <button onClick={renderProps.onClick} className="sign-in-facebook" type="button">
+                <FormattedMessage id="login.facebook" />
+              </button>
+            )}
+          />
+
           <hr />
           <NavLink to={routes.signUp} className="signup-button">
             <FormattedMessage id="login.signup" />
