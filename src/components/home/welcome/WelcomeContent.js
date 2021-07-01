@@ -1,5 +1,4 @@
 import React from 'react';
-// import { element } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { ReactComponent as Smilies } from 'assets/smilies.svg';
 
@@ -32,10 +31,10 @@ const WelcomeContent = () => (
         </span>
       </li>
     </ul>
-    <button type="button">OK; GOT IT!</button>
+    <button type="button">
+      <FormattedMessage id="home.ok_button" />
+    </button>
   </div>
 );
-
-WelcomeContent.propTypes = {};
 
 export default WelcomeContent;

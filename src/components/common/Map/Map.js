@@ -75,7 +75,7 @@ const Map = ({
           fillOpacity: 0.7,
           map,
           center: { lat: target.lat, lng: target.lng },
-          radius: target.radius
+          radius: target.radius / 100
         }),
         new maps.Marker({
           position: { lat: target.lat, lng: target.lng },
