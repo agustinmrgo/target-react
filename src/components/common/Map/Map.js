@@ -41,7 +41,6 @@ const Map = ({
     getAllTargetsRequest();
   }, [locationStatus, getAllTargetsRequest]);
 
-  // eslint-disable-next-line react/no-multi-comp
   const targetIcon = target => {
     switch (target.topicId) {
       case 2:
@@ -89,75 +88,6 @@ const Map = ({
     });
   };
 
-  // const renderTargets = () => {
-  //   let topicIcon = null;
-  //   return targets.map(({ target }) => {
-  //     topicIcon = null;
-  //     switch (target.topicId) {
-  //       case 2:
-  //         topicIcon = <FootballTopicIcon className="topic-icon" />;
-  //         break;
-  //       case 13:
-  //         topicIcon = <PoliticsTopicIcon className="" />;
-  //         break;
-  //       case 14:
-  //         topicIcon = <ArtTopicIcon className="" />;
-  //         break;
-  //       case 15:
-  //         topicIcon = <DatingTopicIcon className="" />;
-  //         break;
-  //       case 16:
-  //         topicIcon = <MusicTopicIcon className="" />;
-  //         break;
-  //       case 17:
-  //         topicIcon = <MoviesTopicIcon className="" />;
-  //         break;
-  //       case 18:
-  //         topicIcon = <SeriesTopicIcon className="" />;
-  //         break;
-  //       case 19:
-  //         topicIcon = <FoodTopicIcon className="" />;
-  //         break;
-  //       default:
-  //         topicIcon = <FootballTopicIcon className="" />;
-  //         break;
-  //     }
-  //     return (
-  //       <div
-  //         key={target.id}
-  //         lat={target.lat}
-  //         lng={target.lng}
-  //         style={{ transform: 'translate(50%, 50%)' }}
-  //       >
-  //         {/* <div
-  //           className="target-background"
-  //           key={target.id}
-  //           lat={target.lat}
-  //           lng={target.lng}
-  //           style={{ width: target.radius / 100, height: target.radius / 100 }}
-  //         /> */}
-  //         {/* <FootballTopicIcon
-  //           key={target.id}
-  //           lat={target.lat}
-  //           lng={target.lng}
-  //           className="topic-icon"
-  //         /> */}
-  //         {/* <LocationOval className="current-location-marker" /> */}
-  //         {topicIcon}
-  //       </div>
-  //       // <div
-  //       //   className="target-background"
-  //       //   key={target.id}
-  //       //   lat={target.lat}
-  //       //   lng={target.lng}
-  //       //   style={{ width: 100, height: 100 }}
-  //       // >
-  //       //   {topicIcon}
-  //       // </div>
-  //     );
-  //   });
-  // };
-
   return (
     <>
       {targets.length !== 0 && (
@@ -175,7 +105,6 @@ const Map = ({
               <LocationIcon className="current-location-marker current-location-icon" />
             </div>
           )}
-          {/* {targets.length !== 0 && renderTargets()} */}
         </GoogleMapReact>
       )}
       {targets.length === 0 && <Loading />}
