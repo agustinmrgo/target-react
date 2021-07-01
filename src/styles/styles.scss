@@ -32,29 +32,17 @@ hr {
 
 ul {
   list-style: disc;
-  // list-style-type: disc;
-  // list-style-position: inside;
   text-align: left;
-  margin: 3rem;
 }
 
 li {
   font-size: 1.4rem;
   line-height: 2.6rem;
   margin: 2rem 0;
-  // padding: 0px;
-  // padding: revert;
 }
 
-li > * {
-  position: relative;
-  top: -0.6rem;
-  left: -1rem;
-}
-
-::marker {
+li::marker {
   font-size: 3rem;
-  margin: 0px 0px;
   color: $primary-blue;
 }
 
@@ -149,6 +137,7 @@ button {
   font-weight: 600;
   font-size: 1.1rem;
   line-height: 1.5rem;
+  cursor: pointer;
 }
 
 .iphone-6 {
