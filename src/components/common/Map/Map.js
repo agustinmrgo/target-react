@@ -3,18 +3,11 @@ import { number, shape, bool } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
+import { targetIcon } from 'utils/helpers';
+import { yellowTargetBackground } from 'constants/colors';
 
 import { useDispatch, useTargets } from 'hooks';
 import { getAllTargets } from 'state/actions/targetActions';
-
-import ArtTopicIcon from 'assets/art_topic_icon.png';
-import SeriesTopicIcon from 'assets/series_topic_icon.png';
-import MoviesTopicIcon from 'assets/movies_topic_icon.png';
-import FoodTopicIcon from 'assets/food_topic_icon.png';
-import DatingTopicIcon from 'assets/dating_topic_icon.png';
-import FootballTopicIcon from 'assets/football_topic_icon.png';
-import MusicTopicIcon from 'assets/music_topic_icon.png';
-import PoliticsTopicIcon from 'assets/politics_topic_icon.png';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
@@ -41,47 +34,24 @@ const Map = ({
     getAllTargetsRequest();
   }, [locationStatus, getAllTargetsRequest]);
 
-  const targetIcon = target => {
-    switch (target.topicId) {
-      case 2:
-        return FootballTopicIcon;
-      case 13:
-        return PoliticsTopicIcon;
-      case 14:
-        return ArtTopicIcon;
-      case 15:
-        return DatingTopicIcon;
-      case 16:
-        return MusicTopicIcon;
-      case 17:
-        return MoviesTopicIcon;
-      case 18:
-        return SeriesTopicIcon;
-      case 19:
-        return FoodTopicIcon;
-      default:
-        return MusicTopicIcon;
-    }
-  };
-
   const handleTargetsCircles = ({ map, maps }) => {
-    return targets.map(({ target }) => {
+    return targets.map(({ target: { lat, lng, radius, topicId } }) => {
       return [
         new maps.Circle({
-          strokeColor: '#efc638',
+          strokeColor: yellowTargetBackground,
           strokeOpacity: 0.7,
           strokeWeight: 1,
-          fillColor: '#efc638',
+          fillColor: yellowTargetBackground,
           fillOpacity: 0.7,
           map,
-          center: { lat: target.lat, lng: target.lng },
-          radius: target.radius
+          center: { lat, lng },
+          radius
         }),
         new maps.Marker({
-          position: { lat: target.lat, lng: target.lng },
+          position: { lat, lng },
           map,
           icon: {
-            url: targetIcon(target)
+            url: targetIcon(topicId)
           }
         })
       ];
