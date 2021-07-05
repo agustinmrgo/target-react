@@ -13,4 +13,8 @@ export const getAllTargets = createAsyncThunk('target/getAll', async () => {
   }
 });
 
-export const { fulfilled: getAllTargetsFulfilled, rejected: getAllTargetsRejected } = getAllTargets;
+export const {
+  fulfilled: getAllTargetsFulfilled,
+  pending: getAllTargetsPending,
+  rejected: getAllTargetsRejected
+} = getAllTargets;

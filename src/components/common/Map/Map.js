@@ -5,6 +5,7 @@ import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
 import { targetIcon } from 'utils/helpers';
 import { yellowTargetBackground } from 'constants/colors';
+import { FULFILLED } from 'constants/actionStatusConstants';
 
 import { useDispatch, useTargets } from 'hooks';
 import { getAllTargets } from 'state/actions/targetActions';
@@ -23,7 +24,7 @@ const Map = ({
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
-  const { targets } = useTargets();
+  const { targets, status } = useTargets();
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -60,7 +61,7 @@ const Map = ({
 
   return (
     <>
-      {targets.length !== 0 && (
+      {status === FULFILLED && (
         <GoogleMapReact
           defaultCenter={defaultCenter}
           center={currentLocation}
@@ -77,7 +78,7 @@ const Map = ({
           )}
         </GoogleMapReact>
       )}
-      {targets.length === 0 && <Loading />}
+      {status !== FULFILLED && <Loading />}
     </>
   );
 };
