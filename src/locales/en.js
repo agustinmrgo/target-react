@@ -23,7 +23,14 @@ export default {
 
   'logout.button': 'LOGOUT',
 
-  'home.welcome': 'Welcome to React Redux Base {email}',
+  'home.welcome': 'Welcome to ',
+  'home.subtitle': 'Find people near you & Connect',
+  'home.item_1':
+    'Create a  target  by clicking wherever on the map, specify  the ratio and and a topic: Travel, Dating, Music, etc.',
+  'home.item_2':
+    ' will  start a chat whenever you’ve a match. You can always dismiss a conversation if you’re not interested.',
+  'home.bold_target': 'TARGET',
+  'home.ok_button': 'OK; GOT IT!',
   'home.current_location': 'You are here!',
   'home.current_location_failed': 'Unable to retrieve your location',
 

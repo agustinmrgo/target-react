@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { number, shape, bool } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import GoogleMapReact from 'google-map-react';
+import Loading from 'components/common/Loading';
+import { targetIcon } from 'utils/helpers';
+import { yellowTargetBackground } from 'constants/colors';
+
+import { useDispatch, useTargets } from 'hooks';
+import { getAllTargets } from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
@@ -16,6 +22,8 @@ const Map = ({
 }) => {
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
+  const getAllTargetsRequest = useDispatch(getAllTargets);
+  const { targets } = useTargets();
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -23,22 +31,54 @@ const Map = ({
     };
     const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
-  }, [locationStatus]);
+    getAllTargetsRequest();
+  }, [locationStatus, getAllTargetsRequest]);
+
+  const handleTargetsCircles = ({ map, maps }) => {
+    return targets.map(({ target: { lat, lng, radius, topicId } }) => {
+      return [
+        new maps.Circle({
+          strokeColor: yellowTargetBackground,
+          strokeOpacity: 0.7,
+          strokeWeight: 1,
+          fillColor: yellowTargetBackground,
+          fillOpacity: 0.7,
+          map,
+          center: { lat, lng },
+          radius
+        }),
+        new maps.Marker({
+          position: { lat, lng },
+          map,
+          icon: {
+            url: targetIcon(topicId)
+          }
+        })
+      ];
+    });
+  };
 
   return (
-    <GoogleMapReact
-      defaultCenter={defaultCenter}
-      center={currentLocation}
-      defaultZoom={defaultZoom}
-      {...props}
-    >
-      {enableCurrentLocationMarker && (
-        <div lat={currentLocation.lat} lng={currentLocation.lng}>
-          <LocationOval className="current-location-marker" />
-          <LocationIcon className="current-location-marker current-location-icon" />
-        </div>
+    <>
+      {targets.length !== 0 && (
+        <GoogleMapReact
+          defaultCenter={defaultCenter}
+          center={currentLocation}
+          defaultZoom={defaultZoom}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={handleTargetsCircles}
+          {...props}
+        >
+          {enableCurrentLocationMarker && (
+            <div lat={currentLocation.lat} lng={currentLocation.lng}>
+              <LocationOval className="current-location-marker" />
+              <LocationIcon className="current-location-marker current-location-icon" />
+            </div>
+          )}
+        </GoogleMapReact>
       )}
-    </GoogleMapReact>
+      {targets.length === 0 && <Loading />}
+    </>
   );
 };
 

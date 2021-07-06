@@ -30,6 +30,22 @@ hr {
   margin: 1.5rem 0;
 }
 
+ul {
+  list-style: disc;
+  text-align: left;
+}
+
+li {
+  font-size: 1.4rem;
+  line-height: 2.6rem;
+  margin: 2rem 0;
+}
+
+li::marker {
+  font-size: 3rem;
+  color: $primary-blue;
+}
+
 .loading-wrapper {
   align-items: center;
   display: flex;
@@ -121,6 +137,7 @@ button {
   font-weight: 600;
   font-size: 1.1rem;
   line-height: 1.5rem;
+  cursor: pointer;
 }
 
 .iphone-6 {
@@ -138,5 +155,5 @@ button {
 }
 
 .sidebar-content {
-  width: 30%;
+  width: 40%;
 }

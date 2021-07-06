@@ -1,0 +1,30 @@
+.welcome-container {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.welcome-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 15px 0;
+}
+
+.welcome-list {
+  margin: 6rem;
+}
+
+.welcome-list > li > * {
+  position: relative;
+  top: -0.6rem;
+  left: -1rem;
+}
+.welcome-list > li {
+  position: relative;
+  left: 2rem;
+}
+
+.target-bold-text {
+  letter-spacing: 0.21rem;
+  font-weight: 700;
+}
