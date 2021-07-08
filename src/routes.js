@@ -10,12 +10,13 @@ const routes = [
   {
     path: routesPaths.index,
     component: <HomePage />,
-    exact: true,
+    // exact: true,
     private: true
   },
   {
     path: routesPaths.login,
     component: <LoginPage />
+    // exact: true
   },
   {
     path: routesPaths.signUp,

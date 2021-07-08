@@ -13,8 +13,23 @@ export const getAllTargets = createAsyncThunk('target/getAll', async () => {
   }
 });
 
+export const createTarget = createAsyncThunk('target/create', async target => {
+  try {
+    const { data } = await targetService.createTarget({ target });
+    return data;
+  } catch ({ response: { targets } }) {
+    throw parseError(targets);
+  }
+});
+
 export const {
   fulfilled: getAllTargetsFulfilled,
   pending: getAllTargetsPending,
   rejected: getAllTargetsRejected
 } = getAllTargets;
+
+export const {
+  fulfilled: createTargetFulfilled,
+  pending: createTargetPending,
+  rejected: createTargetRejected
+} = createTarget;

@@ -31,7 +31,12 @@ const WelcomeContent = () => (
         </span>
       </li>
     </ul>
-    <button type="button">
+    <button
+      type="button"
+      onClick={() => {
+        window.location.href = '/';
+      }}
+    >
       <FormattedMessage id="home.ok_button" />
     </button>
   </div>

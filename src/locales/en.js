@@ -34,6 +34,19 @@ export default {
   'home.current_location': 'You are here!',
   'home.current_location_failed': 'Unable to retrieve your location',
 
+  'home_empty.subtitle_1': 'Create your first target by clicking wherever on the map.',
+  'home_empty.subtitle_2': 'Psss!, these are the most popular targets:',
+
+  'topic.travel': 'Travel',
+  'topic.music': 'Music',
+  'topic.politics': 'Politics',
+  'topic.football': 'Football',
+  'topic.movies': 'Movies',
+  'topic.series': 'Series',
+  'topic.food': 'Food',
+  'topic.dating': 'Dating',
+  'topic.art': 'Art',
+
   // errors
   'email.presence': 'You must enter an email to continue',
   'name.presence': 'You must enter a name to continue',

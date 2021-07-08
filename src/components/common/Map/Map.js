@@ -24,7 +24,7 @@ const Map = ({
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
-  const { targets, status } = useTargets();
+  const { targets, getStatus, createStatus } = useTargets();
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -32,8 +32,11 @@ const Map = ({
     };
     const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
-    getAllTargetsRequest();
-  }, [locationStatus, getAllTargetsRequest]);
+
+    if (getStatus !== FULFILLED) {
+      getAllTargetsRequest();
+    }
+  }, [locationStatus, getAllTargetsRequest, getStatus, createStatus]);
 
   const handleTargetsCircles = ({ map, maps }) => {
     return targets.map(({ target: { lat, lng, radius, topicId } }) => {
@@ -61,7 +64,7 @@ const Map = ({
 
   return (
     <>
-      {status === FULFILLED && (
+      {getStatus === FULFILLED && (
         <GoogleMapReact
           defaultCenter={defaultCenter}
           center={currentLocation}
@@ -78,7 +81,7 @@ const Map = ({
           )}
         </GoogleMapReact>
       )}
-      {status !== FULFILLED && <Loading />}
+      {getStatus !== FULFILLED && <Loading />}
     </>
   );
 };
