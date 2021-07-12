@@ -1,8 +1,11 @@
 import React from 'react';
+// import { Redirect } from 'react-router-dom';
 
 import routesPaths from 'constants/routesPaths';
 import WelcomeContent from 'components/home/welcome/WelcomeContent';
 import MainContent from 'components/home/main/MainContent';
+
+// const isFirstTimeUser = true;
 
 const sidebarRoutes = [
   {

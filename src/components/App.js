@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, BrowserRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { CookiesProvider } from 'react-cookie';
 
 import { useSession } from 'hooks';
 import RouteFromPath from 'components/routes/RouteFromPath';
@@ -14,13 +15,15 @@ const App = () => {
       <Helmet>
         <title>Target</title>
       </Helmet>
-      <BrowserRouter>
-        <Switch>
-          {routes.map((route, index) => (
-            <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-          ))}
-        </Switch>
-      </BrowserRouter>
+      <CookiesProvider>
+        <BrowserRouter>
+          <Switch>
+            {routes.map((route, index) => (
+              <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+            ))}
+          </Switch>
+        </BrowserRouter>
+      </CookiesProvider>
     </>
   );
 };

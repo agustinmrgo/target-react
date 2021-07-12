@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSession, useResponsive } from 'hooks';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import RouteFromPath from 'components/routes/RouteFromPath';
 import sidebarRoutes from 'components/routes/sidebarRoutes';
 import Map from 'components/common/Map/Map';
-// import WelcomeContent from 'components/home/welcome/WelcomeContent';
 import './homePage.scss';
 
 const HomePage = () => {
   const { user, authenticated } = useSession();
   const isTabletOrMobile = useResponsive();
+  const [cookies, setCookie] = useCookies(['isFirstTimeUser']);
+
+  useEffect(() => {
+    setCookie('isFirstTimeUser', 'true', { path: '/' });
+  }, [setCookie]);
 
   return (
     <>
@@ -23,9 +28,15 @@ const HomePage = () => {
           <div className="main-layout-container">
             <div className="sidebar-content">
               <Switch>
-                {sidebarRoutes.map((route, index) => (
-                  <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-                ))}
+                {sidebarRoutes.map((route, index) => {
+                  // if (cookies.isFirstTimeUser === 'true' && window.location !== '/welcome') {
+                  //   return <Redirect to="/welcome" />;
+                  // }
+                  return (
+                    <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+                  );
+                })}
+                {cookies.isFirstTimeUser === 'true' && <Redirect to="/welcome" />}
               </Switch>
             </div>
             <div className="main-content">

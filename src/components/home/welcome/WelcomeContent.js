@@ -1,45 +1,53 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ReactComponent as Smilies } from 'assets/smilies.svg';
+import routes from 'constants/routesPaths';
+import { NavLink } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import './welcomeContent.scss';
 
-const WelcomeContent = () => (
-  <div className="welcome-container">
-    <Smilies />
-    <h2 className="welcome-title">
-      <FormattedMessage id="home.welcome" />
-      <span>
-        <FormattedMessage id="home.bold_target" />
-      </span>
-    </h2>
-    <h4>
-      <FormattedMessage id="home.subtitle" />
-    </h4>
-    <ul className="welcome-list">
-      <li>
+const WelcomeContent = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [cookies, setCookie] = useCookies(['isFirstTimeUser']);
+
+  return (
+    <div className="welcome-container">
+      <Smilies />
+      <h2 className="welcome-title">
+        <FormattedMessage id="home.welcome" />
         <span>
-          <FormattedMessage id="home.item_1" />
-        </span>
-      </li>
-      <li>
-        <span className="target-bold-text">
           <FormattedMessage id="home.bold_target" />
         </span>
-        <span>
-          <FormattedMessage id="home.item_2" />
-        </span>
-      </li>
-    </ul>
-    <button
-      type="button"
-      onClick={() => {
-        window.location.href = '/';
-      }}
-    >
-      <FormattedMessage id="home.ok_button" />
-    </button>
-  </div>
-);
+      </h2>
+      <h4>
+        <FormattedMessage id="home.subtitle" />
+      </h4>
+      <ul className="welcome-list">
+        <li>
+          <span>
+            <FormattedMessage id="home.item_1" />
+          </span>
+        </li>
+        <li>
+          <span className="target-bold-text">
+            <FormattedMessage id="home.bold_target" />
+          </span>
+          <span>
+            <FormattedMessage id="home.item_2" />
+          </span>
+        </li>
+      </ul>
+      <NavLink
+        to={routes.index}
+        onClick={() => setCookie('isFirstTimeUser', 'false', { path: '/' })}
+      >
+        <button type="button">
+          <FormattedMessage id="home.ok_button" />
+        </button>
+      </NavLink>
+    </div>
+  );
+};
 
 export default WelcomeContent;
