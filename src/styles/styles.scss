@@ -46,6 +46,15 @@ li::marker {
   color: $primary-blue;
 }
 
+.error-message {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+}
+
 .loading-wrapper {
   align-items: center;
   display: flex;
