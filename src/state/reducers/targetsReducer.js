@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getAllTargetsFulfilled, getAllTargetsPending } from 'state/actions/targetActions';
 
 const initialState = {
-  targets: [],
-  status: 'idle'
+  targets: []
 };
 
 const targetSlice = createSlice({
