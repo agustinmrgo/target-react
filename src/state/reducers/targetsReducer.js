@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllTargetsFulfilled, getAllTargetsPending } from 'state/actions/targetActions';
+import { getAllTargetsFulfilled } from 'state/actions/targetActions';
 
 const initialState = {
   targets: []
@@ -11,10 +11,6 @@ const targetSlice = createSlice({
   extraReducers: {
     [getAllTargetsFulfilled]: (state, { payload }) => {
       state.targets = payload;
-      state.status = 'fulfilled';
-    },
-    [getAllTargetsPending]: state => {
-      state.status = 'pending';
     }
   }
 });
