@@ -22,14 +22,6 @@ export const createTarget = createAsyncThunk('target/create', async target => {
   }
 });
 
-export const {
-  fulfilled: getAllTargetsFulfilled,
-  pending: getAllTargetsPending,
-  rejected: getAllTargetsRejected
-} = getAllTargets;
+export const { fulfilled: getAllTargetsFulfilled, rejected: getAllTargetsRejected } = getAllTargets;
 
-export const {
-  fulfilled: createTargetFulfilled,
-  pending: createTargetPending,
-  rejected: createTargetRejected
-} = createTarget;
+export const { fulfilled: createTargetFulfilled, rejected: createTargetRejected } = createTarget;

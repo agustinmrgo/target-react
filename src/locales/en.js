@@ -48,6 +48,7 @@ export default {
   'topic.art': 'Art',
 
   // errors
+  'network.rejected': 'Please reload the page',
   'email.presence': 'You must enter an email to continue',
   'name.presence': 'You must enter a name to continue',
   'gender.presence': 'You must select your gender to continue',

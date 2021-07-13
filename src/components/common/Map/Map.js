@@ -5,9 +5,9 @@ import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
 import { targetIcon } from 'utils/helpers';
 import { yellowTargetBackground } from 'constants/colors';
-import { FULFILLED } from 'constants/actionStatusConstants';
+import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
-import { useDispatch, useTargets } from 'hooks';
+import { useDispatch, useTargets, useStatus } from 'hooks';
 import { getAllTargets } from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
@@ -24,7 +24,8 @@ const Map = ({
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
-  const { targets, getStatus, createStatus } = useTargets();
+  const { targets } = useTargets();
+  const { status, error } = useStatus(getAllTargets);
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -33,10 +34,10 @@ const Map = ({
     const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
 
-    if (getStatus !== FULFILLED) {
+    if (status !== FULFILLED) {
       getAllTargetsRequest();
     }
-  }, [locationStatus, getAllTargetsRequest, getStatus, createStatus]);
+  }, [locationStatus, getAllTargetsRequest, status]);
 
   const handleTargetsCircles = ({ map, maps }) => {
     return targets.map(({ target: { lat, lng, radius, topicId } }) => {
@@ -64,7 +65,7 @@ const Map = ({
 
   return (
     <>
-      {getStatus === FULFILLED && (
+      {status === FULFILLED && (
         <GoogleMapReact
           defaultCenter={defaultCenter}
           center={currentLocation}
@@ -81,7 +82,15 @@ const Map = ({
           )}
         </GoogleMapReact>
       )}
-      {getStatus !== FULFILLED && <Loading />}
+      {status === PENDING && <Loading />}
+      {status === REJECTED && (
+        <div className="error-message">
+          <p>{error}</p>
+          <p>
+            <FormattedMessage id="network.rejected" />
+          </p>
+        </div>
+      )}
     </>
   );
 };
