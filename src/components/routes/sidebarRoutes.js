@@ -1,11 +1,9 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
 
 import routesPaths from 'constants/routesPaths';
 import WelcomeContent from 'components/home/welcome/WelcomeContent';
 import MainContent from 'components/home/main/MainContent';
-
-// const isFirstTimeUser = true;
+import CreateTargetForm from 'components/target/CreateTargetForm';
 
 const sidebarRoutes = [
   {
@@ -17,6 +15,12 @@ const sidebarRoutes = [
   {
     path: routesPaths.welcome,
     component: <WelcomeContent />,
+    exact: true,
+    private: true
+  },
+  {
+    path: routesPaths.createTarget,
+    component: <CreateTargetForm />,
     exact: true,
     private: true
   }
