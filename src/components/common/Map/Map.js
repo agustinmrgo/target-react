@@ -5,8 +5,9 @@ import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
 import { targetIcon } from 'utils/helpers';
 import { yellowTargetBackground } from 'constants/colors';
+import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
-import { useDispatch, useTargets } from 'hooks';
+import { useDispatch, useTargets, useStatus } from 'hooks';
 import { getAllTargets } from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
@@ -24,6 +25,7 @@ const Map = ({
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
   const { targets } = useTargets();
+  const { status, error } = useStatus(getAllTargets);
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -60,7 +62,7 @@ const Map = ({
 
   return (
     <>
-      {targets.length !== 0 && (
+      {status === FULFILLED && (
         <GoogleMapReact
           defaultCenter={defaultCenter}
           center={currentLocation}
@@ -77,7 +79,15 @@ const Map = ({
           )}
         </GoogleMapReact>
       )}
-      {targets.length === 0 && <Loading />}
+      {status === PENDING && <Loading />}
+      {status === REJECTED && (
+        <div className="error-message">
+          <p>{error}</p>
+          <p>
+            <FormattedMessage id="network.rejected" />
+          </p>
+        </div>
+      )}
     </>
   );
 };

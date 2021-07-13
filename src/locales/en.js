@@ -35,6 +35,7 @@ export default {
   'home.current_location_failed': 'Unable to retrieve your location',
 
   // errors
+  'network.rejected': 'Please reload the page',
   'email.presence': 'You must enter an email to continue',
   'name.presence': 'You must enter a name to continue',
   'gender.presence': 'You must select your gender to continue',
