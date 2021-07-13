@@ -34,19 +34,19 @@ const HomePage = () => {
         ) : (
           <div className="main-layout-container">
             <div className="sidebar-content">
-              <Switch>
-                {sidebarRoutes.map((route, index) => {
-                  // if (cookies.isFirstTimeUser === true && window.location !== '/welcome') {
-                  //   return <Redirect to="/welcome" />;
-                  // }
-                  return (
-                    <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-                  );
-                })}
-                {/* {cookies.isFirstTimeUser === true && <Redirect to="/welcome" />} */}
-                {/* no funciona */}
-              </Switch>
-              {cookies.isFirstTimeUser === true && <Redirect to="/welcome" />}
+              {/* <Switch> */}
+              {sidebarRoutes.map((route, index) => {
+                // if (cookies.isFirstTimeUser === true && window.location !== '/welcome') {
+                //   return <Redirect to="/welcome" />;
+                // }
+                return (
+                  <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+                );
+              })}
+              {/* {cookies.isFirstTimeUser === true && <Redirect to="/welcome" />} */}
+              {/* no funciona */}
+              {/* </Switch> */}
+              {/* {cookies.isFirstTimeUser === true && <Redirect to="/welcome" />} */}
             </div>
             <div className="main-content">
               <Map />

@@ -21,7 +21,6 @@ const sidebarRoutes = [
   {
     path: routesPaths.createTarget,
     component: <CreateTargetForm />,
-    exact: true,
     private: true
   }
 ];

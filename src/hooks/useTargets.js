@@ -2,10 +2,9 @@ import { useSelector, shallowEqual } from 'react-redux';
 
 export const useTargets = () =>
   useSelector(
-    ({ targetsReducer: { targets, getStatus, createStatus } }) => ({
+    ({ targetsReducer: { targets, currentTargetCoordinates } }) => ({
       targets,
-      getStatus,
-      createStatus
+      currentTargetCoordinates
     }),
     shallowEqual
   );

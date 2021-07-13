@@ -1,0 +1,10 @@
+@import '../../styles/colors.scss';
+
+.top-nav {
+  overflow: hidden;
+  background-color: $primary-blue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 7rem;
+}

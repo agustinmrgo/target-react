@@ -34,8 +34,8 @@ export default {
   'home.current_location': 'You are here!',
   'home.current_location_failed': 'Unable to retrieve your location',
 
-  'home_empty.subtitle_1': 'Create your first target by clicking wherever on the map.',
-  'home_empty.subtitle_2': 'Psss!, these are the most popular targets:',
+  'home.empty.subtitle_1': 'Create your first target by clicking wherever on the map.',
+  'home.empty.subtitle_2': 'Psss!, these are the most popular targets:',
 
   'topic.travel': 'Travel',
   'topic.music': 'Music',
@@ -46,6 +46,15 @@ export default {
   'topic.food': 'Food',
   'topic.dating': 'Dating',
   'topic.art': 'Art',
+
+  'target.navbar': 'Create target',
+  'target.header': 'Create new target',
+  'target.form.submit': 'Save target',
+  'target.form.radius': 'Specify area length',
+  'target.form.title': 'Target title',
+  'target.form.title.placeholder': 'Choose a title for your target',
+  'target.form.topic': 'Select a topic',
+  'target.form.topic.placeholder': 'What do you want to talk about?',
 
   // errors
   'network.rejected': 'Please reload the page',

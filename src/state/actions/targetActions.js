@@ -1,6 +1,7 @@
 import targetService from 'services/targetService';
 import parseError from 'utils/parseError';
 import createAsyncThunk from 'utils/createAsyncThunk';
+import { createAction } from '@reduxjs/toolkit';
 
 export const getAllTargets = createAsyncThunk('target/getAll', async () => {
   try {
@@ -21,6 +22,13 @@ export const createTarget = createAsyncThunk('target/create', async target => {
     throw parseError(targets);
   }
 });
+
+export const setCurrentTargetCoordinates = createAction('target/setCoordinates');
+
+export const {
+  fulfilled: setCurrentTargetCoordinatesFulfilled,
+  rejected: setCurrentTargetCoordinatesRejected
+} = setCurrentTargetCoordinates;
 
 export const { fulfilled: getAllTargetsFulfilled, rejected: getAllTargetsRejected } = getAllTargets;
 

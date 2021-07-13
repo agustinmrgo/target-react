@@ -14,7 +14,7 @@ const SignUpPage = () => {
   const signUpRequest = useDispatch(signUp);
 
   if (authenticated) {
-    return <Redirect to={routes.index} />;
+    return <Redirect exact to={routes.index} />;
   }
 
   return (

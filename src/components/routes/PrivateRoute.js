@@ -13,6 +13,7 @@ const PrivateRoute = ({ children, exact = false, path, authenticated }) => {
     </Route>
   ) : (
     <Redirect
+      exact
       to={{
         pathname: routes.login,
         state: { from: location }

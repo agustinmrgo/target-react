@@ -8,7 +8,7 @@ import { yellowTargetBackground } from 'constants/colors';
 import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
 import { useDispatch, useTargets, useStatus } from 'hooks';
-import { getAllTargets } from 'state/actions/targetActions';
+import { getAllTargets, setCurrentTargetCoordinates } from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
@@ -24,6 +24,7 @@ const Map = ({
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
+  const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
   const { targets } = useTargets();
   const { status, error } = useStatus(getAllTargets);
 
@@ -63,6 +64,8 @@ const Map = ({
     });
   };
 
+  const handleMapClick = ({ lat, lng }) => setClickedCoordenates({ lat, lng });
+
   return (
     <>
       {status === FULFILLED && (
@@ -72,6 +75,7 @@ const Map = ({
           defaultZoom={defaultZoom}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={handleTargetsCircles}
+          onClick={handleMapClick}
           {...props}
         >
           {enableCurrentLocationMarker && (

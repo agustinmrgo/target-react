@@ -24,11 +24,11 @@ const MainContent = () => (
       </div>
       <hr />
       <h4 className="empty_subtitle_1">
-        <FormattedMessage id="home_empty.subtitle_1" />
+        <FormattedMessage id="home.empty.subtitle_1" />
       </h4>
       <div>
         <h6 className="empty_subtitle_2">
-          <FormattedMessage id="home_empty.subtitle_2" />
+          <FormattedMessage id="home.empty.subtitle_2" />
         </h6>
         <ul className="home-topics-list">
           <li>
