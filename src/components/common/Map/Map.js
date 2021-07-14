@@ -7,7 +7,7 @@ import { targetIcon } from 'utils/helpers';
 import { yellowTargetBackground } from 'constants/colors';
 import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
-import { useDispatch, useTargets, useStatus } from 'hooks';
+import { useDispatch, useTarget, useStatus } from 'hooks';
 import { getAllTargets, setCurrentTargetCoordinates } from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
@@ -25,7 +25,7 @@ const Map = ({
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
   const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
-  const { targets } = useTargets();
+  const { targets } = useTarget();
   const { status, error } = useStatus(getAllTargets);
 
   useEffect(() => {

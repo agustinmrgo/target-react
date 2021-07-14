@@ -25,11 +25,6 @@ export const createTarget = createAsyncThunk('target/create', async target => {
 
 export const setCurrentTargetCoordinates = createAction('target/setCoordinates');
 
-export const {
-  fulfilled: setCurrentTargetCoordinatesFulfilled,
-  rejected: setCurrentTargetCoordinatesRejected
-} = setCurrentTargetCoordinates;
-
 export const { fulfilled: getAllTargetsFulfilled, rejected: getAllTargetsRejected } = getAllTargets;
 
 export const { fulfilled: createTargetFulfilled, rejected: createTargetRejected } = createTarget;

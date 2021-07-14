@@ -37,6 +37,18 @@ export const signUp = {
   }
 };
 
+export const createTarget = {
+  radius: {
+    presence: { message: 'radius.presence' }
+  },
+  title: {
+    presence: { message: 'title.presence' }
+  },
+  topic: {
+    presence: { message: 'topic.presence' }
+  }
+};
+
 validate.validators.presence.options = { allowEmpty: false };
 
 export const validations = (constraints, props = {}) => data =>

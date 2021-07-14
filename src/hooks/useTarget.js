@@ -1,8 +1,8 @@
 import { useSelector, shallowEqual } from 'react-redux';
 
-export const useTargets = () =>
+export const useTarget = () =>
   useSelector(
-    ({ targetsReducer: { targets, currentTargetCoordinates } }) => ({
+    ({ targetReducer: { targets, currentTargetCoordinates } }) => ({
       targets,
       currentTargetCoordinates
     }),

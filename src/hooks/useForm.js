@@ -19,6 +19,7 @@ const useForm = (
 
   const handleSubmit = useCallback(
     event => {
+      // console.log('🚀 ~ file: useForm.js ~ event', event);
       event.preventDefault();
       const newErrors = validator(values) || {};
 
@@ -30,6 +31,7 @@ const useForm = (
           error.forEach(e => acc.push(e));
           return acc;
         }, []).length;
+      console.log('🚀 ~ file: useForm.js ~ valid', valid);
       if (valid) {
         onSubmit(values);
       } else {

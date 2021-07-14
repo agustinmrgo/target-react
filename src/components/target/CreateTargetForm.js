@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import { REJECTED, PENDING } from 'constants/actionStatusConstants';
+import { REJECTED, PENDING, FULFILLED } from 'constants/actionStatusConstants';
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
 import Select from 'components/common/Select';
-// import { target as targetValidations } from 'utils/constraints';
+import { createTarget as targetValidations } from 'utils/constraints';
 import {
   useStatus,
   useForm,
   useTextInputProps,
   useSelectProps,
-  useTargets,
-  useDispatch
+  useTarget,
+  useTopic,
+  useDispatch,
+  useValidation
 } from 'hooks';
 import { createTarget } from 'state/actions/targetActions';
+import { getAllTopics } from 'state/actions/topicActions';
+import TargetIcon from 'assets/target_icon.svg';
 
 import './createTargetForm.scss';
 
@@ -28,28 +32,34 @@ const messages = defineMessages({
 });
 
 const fields = {
-  title: '',
-  radius: 0,
-  topicId: 0,
-  lat: 0,
-  lng: 0
+  title: 'title',
+  radius: 'radius',
+  topicId: 'topicId',
+  lat: 'lat',
+  lng: 'lng'
 };
-
-const options = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' },
-  { value: 'other', label: 'Other' }
-];
 
 const CreateTargetForm = () => {
   const intl = useIntl();
   const createTargetRequest = useDispatch(createTarget);
-  const { status, error } = useStatus(createTarget);
-  const { currentTargetCoordinates } = useTargets();
+  const { status: createTargetStatus, error: createTargetError } = useStatus(createTarget);
+  const getAllTopicsRequest = useDispatch(getAllTopics);
+  const { status: getAllTopicsStatus, error: getAllTopicsError } = useStatus(getAllTopics);
+  const { currentTargetCoordinates } = useTarget();
+  const { topics } = useTopic();
+  // console.log('🚀 ~ file: CreateTargetForm.js ~ line 56 ~ CreateTargetForm ~ topics', topics);
+  const validator = useValidation(targetValidations);
 
-  const handleCreateSubmit = ev => {
-    console.log('🚀 ~ currentTargetCoordinates', currentTargetCoordinates);
-    console.log('🚀 ~ CreateTargetForm ~ ev', ev);
+  useEffect(() => {
+    if (getAllTopicsStatus !== FULFILLED) {
+      getAllTopicsRequest();
+    }
+  }, [getAllTopicsRequest, getAllTopicsStatus]);
+
+  const handleCreateSubmit = formData => {
+    console.log('🚀 ~ currentTargetCoordin  coordinates', currentTargetCoordinates);
+    console.log('🚀 ~ CreateTargetForm ~ ev', formData);
+    createTargetRequest({ ...currentTargetCoordinates, ...formData });
   };
 
   const {
@@ -63,7 +73,7 @@ const CreateTargetForm = () => {
     touched
   } = useForm(
     {
-      handleCreateSubmit
+      onSubmit: handleCreateSubmit
       // validator,
       // validateOnBlur: true
     },
@@ -89,18 +99,26 @@ const CreateTargetForm = () => {
     touched
   );
 
+  const topicsOptions = topics.map(({ topic: { id, label } }) => ({ value: id, label }));
+
   return (
     <>
       <div className="top-nav">
-        <h3>
+        <h3 className="nav-title">
           <FormattedMessage id="target.navbar" />
         </h3>
       </div>
-      <form onSubmit={handleSubmit}>
-        {status === REJECTED && <strong className="error">{error}</strong>}
+      <img src={TargetIcon} alt="targetIcon" className="target-icon" />
+      <p className="target-icon-label">
+        <FormattedMessage id="target.header" />
+      </p>
+      <form onSubmit={handleSubmit} className="create-target-form">
+        {/* {status === REJECTED && <strong className="error">{error}</strong>} */}
+        {getAllTopicsStatus === REJECTED && <strong className="error">{getAllTopicsError}</strong>}
         <div>
           <Input
             name="radius"
+            type="number"
             label={intl.formatMessage(messages.radius)}
             {...inputProps(fields.radius)}
           />
@@ -117,15 +135,16 @@ const CreateTargetForm = () => {
             name="topic"
             label={intl.formatMessage(messages.topic)}
             isSearchable={false}
-            options={options}
+            options={topicsOptions}
             placeholder={intl.formatMessage(messages.topicPlaceholder)}
             {...selectProps(fields.topicId)}
+            // disabled={getAllTopicsStatus !== FULFILLED}
           />
         </div>
-        <button type="submit" className="sign-in-button">
+        <button type="submit" className="">
           <FormattedMessage id="target.form.submit" />
         </button>
-        {status === PENDING && <Loading />}
+        {(getAllTopicsStatus === PENDING || createTargetStatus === PENDING) && <Loading />}
       </form>
     </>
   );

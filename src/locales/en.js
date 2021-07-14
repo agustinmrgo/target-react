@@ -65,5 +65,8 @@ export default {
   'password.presence': 'You must enter a password to continue',
   'password.length': 'Password must be at least 8 characters',
   'passwordConfirmation.presence': 'You must enter a password confirmation to continue',
-  'passwordConfirmation.equality': 'Your password confirmation must be equal to the password'
+  'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
+  'radius.presence': 'You should indicate the radius for your target',
+  'title.presence': 'You should indicate a title for your target',
+  'topic.presence': 'You should select a topic for your target'
 };
