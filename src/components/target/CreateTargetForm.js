@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router-dom';
 
 import { REJECTED, PENDING, FULFILLED } from 'constants/actionStatusConstants';
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
 import Select from 'components/common/Select';
-import { createTarget as targetValidations } from 'utils/constraints';
 import {
   useStatus,
   useForm,
@@ -14,12 +14,12 @@ import {
   useSelectProps,
   useTarget,
   useTopic,
-  useDispatch,
-  useValidation
+  useDispatch
 } from 'hooks';
 import { createTarget } from 'state/actions/targetActions';
 import { getAllTopics } from 'state/actions/topicActions';
 import TargetIcon from 'assets/target_icon.svg';
+import BackArrowIcon from 'assets/back_arrow_icon.svg';
 
 import './createTargetForm.scss';
 
@@ -47,8 +47,7 @@ const CreateTargetForm = () => {
   const { status: getAllTopicsStatus, error: getAllTopicsError } = useStatus(getAllTopics);
   const { currentTargetCoordinates } = useTarget();
   const { topics } = useTopic();
-  // console.log('🚀 ~ file: CreateTargetForm.js ~ line 56 ~ CreateTargetForm ~ topics', topics);
-  const validator = useValidation(targetValidations);
+  const history = useHistory();
 
   useEffect(() => {
     if (getAllTopicsStatus !== FULFILLED) {
@@ -57,8 +56,6 @@ const CreateTargetForm = () => {
   }, [getAllTopicsRequest, getAllTopicsStatus]);
 
   const handleCreateSubmit = formData => {
-    console.log('🚀 ~ currentTargetCoordin  coordinates', currentTargetCoordinates);
-    console.log('🚀 ~ CreateTargetForm ~ ev', formData);
     createTargetRequest({ ...currentTargetCoordinates, ...formData });
   };
 
@@ -74,8 +71,6 @@ const CreateTargetForm = () => {
   } = useForm(
     {
       onSubmit: handleCreateSubmit
-      // validator,
-      // validateOnBlur: true
     },
     [handleCreateSubmit]
   );
@@ -101,9 +96,14 @@ const CreateTargetForm = () => {
 
   const topicsOptions = topics.map(({ topic: { id, label } }) => ({ value: id, label }));
 
+  const handleBackClick = () => history.push('/');
+
   return (
     <>
       <div className="top-nav">
+        <div className="back-arrow-icon" onClick={handleBackClick}>
+          <img src={BackArrowIcon} alt="backArrowIcon" />
+        </div>
         <h3 className="nav-title">
           <FormattedMessage id="target.navbar" />
         </h3>
@@ -113,7 +113,7 @@ const CreateTargetForm = () => {
         <FormattedMessage id="target.header" />
       </p>
       <form onSubmit={handleSubmit} className="create-target-form">
-        {/* {status === REJECTED && <strong className="error">{error}</strong>} */}
+        {createTargetStatus === REJECTED && <strong className="error">{createTargetError}</strong>}
         {getAllTopicsStatus === REJECTED && <strong className="error">{getAllTopicsError}</strong>}
         <div>
           <Input
@@ -138,7 +138,6 @@ const CreateTargetForm = () => {
             options={topicsOptions}
             placeholder={intl.formatMessage(messages.topicPlaceholder)}
             {...selectProps(fields.topicId)}
-            // disabled={getAllTopicsStatus !== FULFILLED}
           />
         </div>
         <button type="submit" className="">

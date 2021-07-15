@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { number, shape, bool } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
 import { targetIcon } from 'utils/helpers';
 import { yellowTargetBackground } from 'constants/colors';
+import routesPaths from 'constants/routesPaths';
 import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
 import { useDispatch, useTarget, useStatus } from 'hooks';
@@ -27,6 +29,7 @@ const Map = ({
   const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
   const { targets } = useTarget();
   const { status, error } = useStatus(getAllTargets);
+  const history = useHistory();
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -64,7 +67,12 @@ const Map = ({
     });
   };
 
-  const handleMapClick = ({ lat, lng }) => setClickedCoordenates({ lat, lng });
+  const handleMapClick = ({ lat, lng }) => {
+    setClickedCoordenates({ lat, lng });
+    if (window.location.pathname !== routesPaths.createTarget) {
+      history.push(routesPaths.createTarget);
+    }
+  };
 
   return (
     <>

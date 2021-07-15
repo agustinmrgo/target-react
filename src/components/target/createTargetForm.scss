@@ -9,12 +9,16 @@
   justify-content: center;
   height: 7rem;
   margin: -2rem;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .target-icon {
   margin: 4rem 0 1rem 0;
   width: 5rem;
+}
+
+.back-arrow-icon {
+  cursor: pointer;
 }
 
 .target-icon-label {
@@ -32,6 +36,7 @@
   letter-spacing: 0.3rem;
   text-transform: uppercase;
   color: $white;
+  margin: auto;
 }
 
 .create-target-form {
@@ -50,7 +55,3 @@
   margin: 2rem 0;
   width: 15rem;
 }
-
-// input {
-//   width: 100%;
-// }
