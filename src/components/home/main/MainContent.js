@@ -52,11 +52,8 @@ const MainContent = () => (
         </ul>
       </div>
     </div>
-    {/* <Smilies className="smilies-footer" /> */}
-    {/* <div className="smilies-footer" /> */}
     <footer>
       <img src={Smilies} alt="fireSpot" className="smilies-footer" />
-      {/* <Smilies className="smilies-footer" /> */}
     </footer>
   </div>
 );
