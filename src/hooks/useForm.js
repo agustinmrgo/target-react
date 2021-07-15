@@ -19,7 +19,6 @@ const useForm = (
 
   const handleSubmit = useCallback(
     event => {
-      // console.log('🚀 ~ file: useForm.js ~ event', event);
       event.preventDefault();
       const newErrors = validator(values) || {};
 
