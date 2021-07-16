@@ -33,6 +33,7 @@ export default {
   'home.ok_button': 'OK; GOT IT!',
   'home.current_location': 'You are here!',
   'home.current_location_failed': 'Unable to retrieve your location',
+  'home.empty_username': 'No user name found',
 
   'home.empty.subtitle_1': 'Create your first target by clicking wherever on the map.',
   'home.empty.subtitle_2': 'Psss!, these are the most popular targets:',
