@@ -44,7 +44,7 @@ export const createTarget = {
   title: {
     presence: { message: 'title.presence' }
   },
-  topic: {
+  topicId: {
     presence: { message: 'topic.presence' }
   }
 };

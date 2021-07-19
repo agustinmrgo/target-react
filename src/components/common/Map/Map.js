@@ -10,7 +10,11 @@ import routesPaths from 'constants/routesPaths';
 import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
 import { useDispatch, useTarget, useStatus } from 'hooks';
-import { getAllTargets, setCurrentTargetCoordinates } from 'state/actions/targetActions';
+import {
+  getAllTargets,
+  setCurrentTargetCoordinates,
+  createTarget
+} from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
@@ -28,7 +32,8 @@ const Map = ({
   const getAllTargetsRequest = useDispatch(getAllTargets);
   const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
   const { targets } = useTarget();
-  const { status, error } = useStatus(getAllTargets);
+  const { status: getAllTargetsStatus, error: getAllTargetsError } = useStatus(getAllTargets);
+  const { status: createTargetStatus, error: createTargetError } = useStatus(createTarget);
   const history = useHistory();
 
   useEffect(() => {
@@ -38,10 +43,16 @@ const Map = ({
     const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
 
-    if (status !== FULFILLED) {
+    if (getAllTargetsStatus !== FULFILLED) {
       getAllTargetsRequest();
     }
-  }, [locationStatus, getAllTargetsRequest, status]);
+  }, [locationStatus, getAllTargetsRequest, getAllTargetsStatus]);
+
+  useEffect(() => {
+    if (createTargetStatus === FULFILLED) {
+      getAllTargetsRequest();
+    }
+  }, [createTargetStatus, getAllTargetsRequest]);
 
   const handleTargetsCircles = ({ map, maps }) => {
     return targets.map(({ target: { lat, lng, radius, topicId } }) => {
@@ -76,7 +87,7 @@ const Map = ({
 
   return (
     <>
-      {status === FULFILLED && (
+      {getAllTargetsStatus === FULFILLED && (
         <GoogleMapReact
           defaultCenter={defaultCenter}
           center={currentLocation}
@@ -94,10 +105,10 @@ const Map = ({
           )}
         </GoogleMapReact>
       )}
-      {status === PENDING && <Loading />}
-      {status === REJECTED && (
+      {getAllTargetsStatus === PENDING && <Loading />}
+      {(getAllTargetsStatus === REJECTED || createTargetStatus === REJECTED) && (
         <div className="error-message">
-          <p>{error}</p>
+          <p>{getAllTargetsError || createTargetError}</p>
           <p>
             <FormattedMessage id="network.rejected" />
           </p>
