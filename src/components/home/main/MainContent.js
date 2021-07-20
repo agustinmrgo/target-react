@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Smilies from 'assets/smilies.svg';
 import { ReactComponent as ProfilePlaceholder } from 'assets/profile_placeholder.svg';
 import FootballTopicIcon from 'assets/football_topic_icon.png';
 import MusicTopicIcon from 'assets/music_topic_icon.png';
@@ -14,9 +13,9 @@ const MainContent = () => {
 
   return (
     <div className="main-container">
-      <h2 className="main-title">
+      {/* <h2 className="main-title">
         <FormattedMessage id="home.bold_target" />
-      </h2>
+      </h2> */}
       <div className="home-body">
         <div className="profile-container">
           <div className="profile-picture-background">
@@ -61,9 +60,9 @@ const MainContent = () => {
           </ul>
         </div>
       </div>
-      <footer>
+      {/* <footer>
         <img src={Smilies} alt="fireSpot" className="smilies-footer" />
-      </footer>
+      </footer> */}
     </div>
   );
 };
