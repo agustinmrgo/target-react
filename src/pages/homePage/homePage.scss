@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .map-container {
   height: 100vh;
 }
@@ -12,8 +14,27 @@
   width: 100%;
 }
 
-.sidebar-content {
+.sidebar-container {
   width: 40%;
+  text-align: center;
+}
+
+.sidebar-content {
+  // width: 40%;
   text-align: center;
   padding: 2rem 2rem;
 }
+
+.sidebar-navbar {
+  overflow: hidden;
+  background-color: $primary-blue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 7rem;
+  padding: 2rem;
+}
+
+// .sidebar-footer {
+// }
