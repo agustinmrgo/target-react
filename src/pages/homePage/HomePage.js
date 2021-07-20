@@ -3,6 +3,8 @@ import { useSession, useResponsive } from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
+import routes from 'constants/routesPaths';
+
 import RouteFromPath from 'components/routes/RouteFromPath';
 import sidebarRoutes from 'components/routes/sidebarRoutes';
 import Map from 'components/common/Map/Map';
@@ -16,8 +18,8 @@ const HomePage = () => {
 
   useEffect(() => {
     if (!cookies.isFirstTimeUser) {
-      setCookie('isFirstTimeUser', 'true', { path: '/' });
-      history.push('/welcome');
+      setCookie('isFirstTimeUser', 'true', { path: routes.index });
+      history.push(routes.welcome);
     }
   }, [setCookie, cookies, history]);
 
@@ -31,11 +33,9 @@ const HomePage = () => {
         ) : (
           <div className="main-layout-container">
             <div className="sidebar-content">
-              {sidebarRoutes.map((route, index) => {
-                return (
-                  <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-                );
-              })}
+              {sidebarRoutes.map((route, index) => (
+                <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+              ))}
             </div>
             <div className="main-content">
               <Map />

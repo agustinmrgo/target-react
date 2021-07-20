@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
-import { REJECTED, PENDING, FULFILLED } from 'constants/actionStatusConstants';
+import { REJECTED, PENDING } from 'constants/actionStatusConstants';
+import routes from 'constants/routesPaths';
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
@@ -50,10 +51,8 @@ const CreateTargetForm = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (getAllTopicsStatus !== FULFILLED) {
-      getAllTopicsRequest();
-    }
-  }, [getAllTopicsRequest, getAllTopicsStatus]);
+    getAllTopicsRequest();
+  }, [getAllTopicsRequest]);
 
   const handleCreateSubmit = formData => {
     createTargetRequest({ ...currentTargetCoordinates, ...formData });
@@ -96,7 +95,7 @@ const CreateTargetForm = () => {
 
   const topicsOptions = topics.map(({ topic: { id, label } }) => ({ value: id, label }));
 
-  const handleBackClick = () => history.push('/');
+  const handleBackClick = () => history.push(routes.index);
 
   return (
     <>
