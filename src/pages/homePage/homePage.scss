@@ -15,14 +15,25 @@
 }
 
 .sidebar-container {
+  display: flex;
+  flex-direction: column;
   width: 40%;
   text-align: center;
 }
 
 .sidebar-content {
-  // width: 40%;
+  flex: 1;
   text-align: center;
   padding: 2rem 2rem;
+}
+.navbar-title {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.7rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  // color: $white;
+  margin: auto;
 }
 
 .sidebar-navbar {
@@ -36,5 +47,6 @@
   padding: 2rem;
 }
 
-// .sidebar-footer {
-// }
+.sidebar-footer {
+  padding: 2rem 0;
+}

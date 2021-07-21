@@ -27,7 +27,7 @@ const HomePage = () => {
     <>
       {user?.email &&
         (isTabletOrMobile ? (
-          <div className="map-container">
+          <div className="main-layout-container">
             <Map />
           </div>
         ) : (
