@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-boolean-cast */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Smilies from 'assets/smilies.svg';
@@ -23,7 +22,7 @@ const MainContent = () => {
           <div className="profile-picture-background">
             <ProfilePlaceholder />
           </div>
-          {!!user.username ? (
+          {user.username ? (
             <p>{user.userame}</p>
           ) : (
             <p>
