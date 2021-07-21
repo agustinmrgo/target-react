@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import { REJECTED, PENDING, FULFILLED } from 'constants/actionStatusConstants';
 
@@ -21,7 +21,7 @@ import {
 import { createTarget, setCurrentTargetCoordinates } from 'state/actions/targetActions';
 import { getAllTopics } from 'state/actions/topicActions';
 import TargetIcon from 'assets/target_icon.svg';
-import BackArrowIcon from 'assets/back_arrow_icon.svg';
+// import BackArrowIcon from 'assets/back_arrow_icon.svg';
 
 import './createTargetForm.scss';
 
@@ -51,7 +51,7 @@ const CreateTargetForm = () => {
   const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
   const { topics } = useTopic();
   const validator = useValidation(targetValidations);
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     if (getAllTopicsStatus !== FULFILLED) {
@@ -112,18 +112,18 @@ const CreateTargetForm = () => {
 
   const topicsOptions = topics.map(({ topic: { id, label } }) => ({ value: id, label }));
 
-  const handleBackClick = () => history.push('/');
+  // const handleBackClick = () => history.push('/');
 
   return (
     <>
-      <div className="top-nav">
+      {/* <div className="top-nav">
         <div className="back-arrow-icon" onClick={handleBackClick}>
           <img src={BackArrowIcon} alt="backArrowIcon" />
         </div>
         <h3 className="nav-title">
           <FormattedMessage id="target.navbar" />
         </h3>
-      </div>
+      </div> */}
       <img src={TargetIcon} alt="targetIcon" className="target-icon" />
       <p className="target-icon-label">
         <FormattedMessage id="target.header" />

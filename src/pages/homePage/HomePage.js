@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { FormattedMessage } from 'react-intl';
 
+import routes from 'constants/routesPaths';
+import { black, white, primaryBlue } from 'constants/colors';
+
 import RouteFromPath from 'components/routes/RouteFromPath';
 import sidebarRoutes from 'components/routes/sidebarRoutes';
 import Map from 'components/common/Map/Map';
@@ -24,34 +27,49 @@ const HomePage = () => {
     }
   }, [setCookie, cookies, history]);
 
-  // const navbarTitle = () => {
-  //   switch (window.location.pathname) {
-  //     case '/welcome':
-  //       return '';
-  //     case '/create-target':
-  //       return 'CREATE TARGET';
-  //     default:
-  //       return 'TARGET';
-  //   }
-  // };
+  const navbarTitle = () => {
+    switch (window.location.pathname) {
+      case routes.welcome:
+        return '';
+      case routes.createTarget:
+        return 'target.navbar';
+      default:
+        return 'home.bold_target';
+    }
+  };
+
+  const showBackArrow = window.location.pathname === routes.createTarget;
+  const showNavbarTitle = window.location.pathname !== routes.welcome;
+
+  const isWhiteNavbar =
+    window.location.pathname === routes.index || window.location.pathname === routes.welcome;
+
+  const navBarStyles = {
+    backgroundColor: isWhiteNavbar ? white : primaryBlue,
+    color: isWhiteNavbar ? black : white
+  };
 
   return (
     <>
       {user?.email &&
         (isTabletOrMobile ? (
-          <div className="map-container">
+          <div className="main-layout-container">
             <Map />
           </div>
         ) : (
           <div className="main-layout-container">
             <div className="sidebar-container">
-              <div className="sidebar-navbar">
-                <div className="back-arrow-icon">
-                  <img src={BackArrowIcon} alt="backArrowIcon" />
-                </div>
-                <h3 className="nav-title">
-                  <FormattedMessage id="target.navbar" />
-                </h3>
+              <div className="sidebar-navbar" style={navBarStyles}>
+                {showBackArrow && (
+                  <div className="back-arrow-icon" onClick={() => history.push('/')}>
+                    <img src={BackArrowIcon} alt="backArrowIcon" />
+                  </div>
+                )}
+                {showNavbarTitle && (
+                  <h3 className="navbar-title">
+                    <FormattedMessage id={navbarTitle()} />
+                  </h3>
+                )}
               </div>
               <div className="sidebar-content">
                 {sidebarRoutes.map((route, index) => {

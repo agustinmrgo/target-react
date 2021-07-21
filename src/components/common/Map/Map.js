@@ -55,6 +55,10 @@ const Map = ({
   }, [createTargetStatus, getAllTargetsRequest]);
 
   const handleTargetsCircles = ({ map, maps }) => {
+    // console.log(
+    //   '🚀 ~ file: Map.js ~ maps.ControlPosition.BOTTOM_CENTER',
+    //   maps.ControlPosition.BOTTOM_CENTER
+    // );
     return targets.map(({ target: { lat, lng, radius, topicId } }) => {
       return [
         new maps.Circle({
@@ -85,6 +89,8 @@ const Map = ({
     }
   };
 
+  const createMapOptions = { disableDefaultUI: true, zoomControl: true };
+
   return (
     <>
       {getAllTargetsStatus === FULFILLED && (
@@ -95,6 +101,7 @@ const Map = ({
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={handleTargetsCircles}
           onClick={handleMapClick}
+          options={createMapOptions}
           {...props}
         >
           {enableCurrentLocationMarker && (
