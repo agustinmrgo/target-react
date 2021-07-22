@@ -46,7 +46,7 @@ const WelcomeContent = () => {
       </ul>
       <NavLink
         to={routes.index}
-        onClick={() => setCookie('isFirstTimeUser', 'false', { path: '/' })}
+        onClick={() => setCookie('isFirstTimeUser', 'false', { path: routes.index })}
       >
         <button type="button">
           <FormattedMessage id="home.ok_button" />

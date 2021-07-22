@@ -22,7 +22,7 @@ const MainContent = () => {
           <div className="profile-picture-background">
             <ProfilePlaceholder />
           </div>
-          {user.username !== '' ? (
+          {user.username ? (
             <p>{user.userame}</p>
           ) : (
             <p>
