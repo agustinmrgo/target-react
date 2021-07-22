@@ -22,8 +22,8 @@ const HomePage = () => {
 
   useEffect(() => {
     if (!cookies.isFirstTimeUser) {
-      setCookie('isFirstTimeUser', 'true', { path: '/' });
-      history.push('/welcome');
+      setCookie('isFirstTimeUser', 'true', { path: routes.index });
+      history.push(routes.welcome);
     }
   }, [setCookie, cookies, history]);
 
