@@ -42,11 +42,8 @@ const Map = ({
     };
     const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
-
-    if (getAllTargetsStatus !== FULFILLED) {
-      getAllTargetsRequest();
-    }
-  }, [locationStatus, getAllTargetsRequest, getAllTargetsStatus]);
+    getAllTargetsRequest();
+  }, [locationStatus, getAllTargetsRequest]);
 
   useEffect(() => {
     if (createTargetStatus === FULFILLED) {
