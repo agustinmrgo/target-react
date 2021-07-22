@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { number, shape, bool } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
 import { targetIcon } from 'utils/helpers';
 import { yellowTargetBackground } from 'constants/colors';
+import routesPaths from 'constants/routesPaths';
 import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
-import { useDispatch, useTargets, useStatus } from 'hooks';
-import { getAllTargets } from 'state/actions/targetActions';
+import { useDispatch, useTarget, useStatus } from 'hooks';
+import { getAllTargets, setCurrentTargetCoordinates } from 'state/actions/targetActions';
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
@@ -24,8 +26,10 @@ const Map = ({
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
-  const { targets } = useTargets();
+  const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
+  const { targets } = useTarget();
   const { status, error } = useStatus(getAllTargets);
+  const history = useHistory();
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -33,8 +37,11 @@ const Map = ({
     };
     const error = () => setLocationStatus(<FormattedMessage id="home.current_location_failed" />);
     navigator.geolocation.getCurrentPosition(success, error);
-    getAllTargetsRequest();
-  }, [locationStatus, getAllTargetsRequest]);
+
+    if (status !== FULFILLED) {
+      getAllTargetsRequest();
+    }
+  }, [locationStatus, getAllTargetsRequest, status]);
 
   const handleTargetsCircles = ({ map, maps }) => {
     return targets.map(({ target: { lat, lng, radius, topicId } }) => {
@@ -60,6 +67,13 @@ const Map = ({
     });
   };
 
+  const handleMapClick = ({ lat, lng }) => {
+    setClickedCoordenates({ lat, lng });
+    if (window.location.pathname !== routesPaths.createTarget) {
+      history.push(routesPaths.createTarget);
+    }
+  };
+
   return (
     <>
       {status === FULFILLED && (
@@ -69,6 +83,7 @@ const Map = ({
           defaultZoom={defaultZoom}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={handleTargetsCircles}
+          onClick={handleMapClick}
           {...props}
         >
           {enableCurrentLocationMarker && (

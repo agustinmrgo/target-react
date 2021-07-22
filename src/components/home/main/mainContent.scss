@@ -1,0 +1,64 @@
+@import '../../../styles/colors.scss';
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main-title {
+  letter-spacing: 0.3rem;
+}
+
+.home-topics-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  margin: 2rem 0;
+}
+
+.home-topics-list > li > img {
+  margin-right: 2rem;
+}
+.home-topics-list > li {
+  margin: 1rem 0;
+}
+
+.home-topics-list-container {
+  text-align: center;
+}
+
+.home-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-picture-background {
+  border-radius: 50%;
+  padding: 2rem;
+  background-color: $primary-blue;
+  margin: 2rem 0;
+}
+
+.profile-container > * {
+  margin: 1rem 0;
+}
+.profile-container > a {
+  font-size: 1.2rem;
+}
+
+.smilies-footer {
+  height: 4rem;
+}
+
+.empty_subtitle_1 {
+  margin: 8rem 0;
+}
+
+.empty_subtitle_2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, bool, func, shape, string } from 'prop-types';
+import { arrayOf, bool, func, shape, string, number, oneOfType } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ReactSelect from 'react-select';
 import { parseInputErrors } from 'utils/helpers';
@@ -84,7 +84,7 @@ Select.propTypes = {
   onChange: func.isRequired,
   placeholder: string,
   errors: arrayOf(string),
-  options: arrayOf(shape({ value: string, label: string })),
+  options: arrayOf(shape({ value: oneOfType([string, number]), label: string })),
   active: bool.isRequired,
   touched: bool.isRequired
 };

@@ -1,0 +1,56 @@
+@import '../../styles/colors.scss';
+
+.top-nav {
+  overflow: hidden;
+  background-color: $primary-blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7rem;
+  margin: -2rem;
+  padding: 2rem;
+}
+
+.target-icon {
+  margin: 4rem 0 1rem;
+  width: 5rem;
+}
+
+.back-arrow-icon {
+  cursor: pointer;
+}
+
+.target-icon-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+.nav-title {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.7rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: $white;
+  margin: auto;
+}
+
+.create-target-form {
+  margin: 4rem 0;
+}
+
+.create-target-form > div {
+  width: 80%;
+  margin: 0 auto;
+}
+.create-target-form input {
+  width: 100%;
+}
+
+.create-target-form button {
+  margin: 2rem 0;
+  width: 15rem;
+}

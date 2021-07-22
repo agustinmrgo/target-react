@@ -8,18 +8,19 @@ import NotFoundPage from 'pages/NotFoundPage';
 
 const routes = [
   {
-    path: routesPaths.index,
-    component: <HomePage />,
-    exact: true,
-    private: true
-  },
-  {
     path: routesPaths.login,
-    component: <LoginPage />
+    component: <LoginPage />,
+    exact: true
   },
   {
     path: routesPaths.signUp,
-    component: <SignUpPage />
+    component: <SignUpPage />,
+    exact: true
+  },
+  {
+    path: routesPaths.index,
+    component: <HomePage />,
+    private: true
   },
   {
     component: <NotFoundPage />
