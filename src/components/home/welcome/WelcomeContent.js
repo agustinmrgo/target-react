@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ReactComponent as Smilies } from 'assets/smilies.svg';
 import routes from 'constants/routesPaths';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 import './welcomeContent.scss';
 
 const WelcomeContent = () => {
-  // eslint-disable-next-line no-unused-vars
   const [cookies, setCookie] = useCookies(['isFirstTimeUser']);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (cookies.isFirstTimeUser === 'false') {
+      history.replace('/');
+    }
+  }, [history, cookies]);
 
   return (
     <div className="welcome-container">

@@ -69,5 +69,6 @@ export default {
   'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
   'radius.presence': 'You should indicate the radius for your target',
   'title.presence': 'You should indicate a title for your target',
-  'topic.presence': 'You should select a topic for your target'
+  'topic.presence': 'You should select a topic for your target',
+  'coordinates.presence': "You should click on the map to set your target's location"
 };

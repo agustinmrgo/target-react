@@ -8,6 +8,7 @@ import routes from 'constants/routesPaths';
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
 import Select from 'components/common/Select';
+import { createTarget as targetValidations } from 'utils/constraints';
 import {
   useStatus,
   useForm,
@@ -15,9 +16,10 @@ import {
   useSelectProps,
   useTarget,
   useTopic,
-  useDispatch
+  useDispatch,
+  useValidation
 } from 'hooks';
-import { createTarget } from 'state/actions/targetActions';
+import { createTarget, setCurrentTargetCoordinates } from 'state/actions/targetActions';
 import { getAllTopics } from 'state/actions/topicActions';
 import TargetIcon from 'assets/target_icon.svg';
 import BackArrowIcon from 'assets/back_arrow_icon.svg';
@@ -47,15 +49,27 @@ const CreateTargetForm = () => {
   const getAllTopicsRequest = useDispatch(getAllTopics);
   const { status: getAllTopicsStatus, error: getAllTopicsError } = useStatus(getAllTopics);
   const { currentTargetCoordinates } = useTarget();
+  const setClickedCoordenates = useDispatch(setCurrentTargetCoordinates);
   const { topics } = useTopic();
+  const validator = useValidation(targetValidations);
   const history = useHistory();
 
   useEffect(() => {
     getAllTopicsRequest();
   }, [getAllTopicsRequest]);
 
+  const clearCurrentTargetCoordinates = () => setClickedCoordenates({ lat: 0, lng: 0 });
+
+  const areCurrentTargetCoordinatesValid =
+    currentTargetCoordinates &&
+    currentTargetCoordinates.lat !== 0 &&
+    currentTargetCoordinates.lng !== 0;
+
   const handleCreateSubmit = formData => {
-    createTargetRequest({ ...currentTargetCoordinates, ...formData });
+    if (areCurrentTargetCoordinatesValid) {
+      createTargetRequest({ ...currentTargetCoordinates, ...formData });
+      clearCurrentTargetCoordinates();
+    }
   };
 
   const {
@@ -69,7 +83,9 @@ const CreateTargetForm = () => {
     touched
   } = useForm(
     {
-      onSubmit: handleCreateSubmit
+      onSubmit: handleCreateSubmit,
+      validator,
+      validateOnBlur: true
     },
     [handleCreateSubmit]
   );
@@ -131,7 +147,7 @@ const CreateTargetForm = () => {
         </div>
         <div>
           <Select
-            name="topic"
+            name="topicId"
             label={intl.formatMessage(messages.topic)}
             isSearchable={false}
             options={topicsOptions}
@@ -142,6 +158,11 @@ const CreateTargetForm = () => {
         <button type="submit" className="">
           <FormattedMessage id="target.form.submit" />
         </button>
+        {!areCurrentTargetCoordinatesValid && (
+          <div className="span-error">
+            <FormattedMessage id="coordinates.presence" />
+          </div>
+        )}
         {(getAllTopicsStatus === PENDING || createTargetStatus === PENDING) && <Loading />}
       </form>
     </>
