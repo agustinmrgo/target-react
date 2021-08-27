@@ -3,12 +3,17 @@ import { Switch, BrowserRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { CookiesProvider } from 'react-cookie';
 
-import { useSession } from 'hooks';
+import { useSession, useResponsive } from 'hooks';
 import RouteFromPath from 'components/routes/RouteFromPath';
-import routes from '../routes';
+import LayoutWrapper from 'components/common/LayoutWrapper';
+import mobileRoutes from 'components/routes/sidebarRoutes';
+import webRoutes from '../routes';
 
 const App = () => {
   const { authenticated } = useSession();
+  const isTabletOrMobile = useResponsive();
+
+  const routes = isTabletOrMobile ? [...mobileRoutes, ...webRoutes] : webRoutes;
 
   return (
     <>
@@ -17,11 +22,13 @@ const App = () => {
       </Helmet>
       <CookiesProvider>
         <BrowserRouter>
-          <Switch>
-            {routes.map((route, index) => (
-              <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-            ))}
-          </Switch>
+          <LayoutWrapper>
+            <Switch>
+              {routes.map((route, index) => (
+                <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+              ))}
+            </Switch>
+          </LayoutWrapper>
         </BrowserRouter>
       </CookiesProvider>
     </>

@@ -6,10 +6,6 @@
   height: 100%;
 }
 
-.main-title {
-  letter-spacing: 0.3rem;
-}
-
 .home-topics-list {
   display: flex;
   flex-direction: column;
@@ -27,13 +23,6 @@
 
 .home-topics-list-container {
   text-align: center;
-}
-
-.home-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
 }
 
 .profile-picture-background {

@@ -6,45 +6,31 @@
 
 .main-layout-container {
   display: flex;
-  width: 100%;
   height: 100vh;
 }
 
 .main-content {
-  width: 100%;
+  flex: 7;
 }
 
 .sidebar-container {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  text-align: center;
+  flex: 3;
+  overflow: auto;
 }
 
 .sidebar-content {
+  width: 100%;
   flex: 1;
   text-align: center;
-  padding: 2rem 2rem;
 }
+
 .navbar-title {
   font-weight: 700;
   font-size: 2rem;
   line-height: 2.7rem;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
-  // color: $white;
   margin: auto;
-}
-
-.sidebar-navbar {
-  overflow: hidden;
-  background-color: $primary-blue;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 7rem;
-  padding: 2rem;
 }
 
 .sidebar-footer {
