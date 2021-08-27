@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSession, useResponsive } from 'hooks';
+import { useSession } from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
@@ -8,11 +8,11 @@ import routes from 'constants/routesPaths';
 import RouteFromPath from 'components/routes/RouteFromPath';
 import sidebarRoutes from 'components/routes/sidebarRoutes';
 import Map from 'components/common/Map/Map';
+import Smilies from 'assets/smilies.svg';
 import './homePage.scss';
 
 const HomePage = () => {
   const { user, authenticated } = useSession();
-  const isTabletOrMobile = useResponsive();
   const [cookies, setCookie] = useCookies(['isFirstTimeUser']);
   const history = useHistory();
 
@@ -25,23 +25,25 @@ const HomePage = () => {
 
   return (
     <>
-      {user?.email &&
-        (isTabletOrMobile ? (
-          <div className="main-layout-container">
+      {user?.email && (
+        <div className="main-layout-container">
+          <div className="flex-column-centered sidebar-container">
+            <div className="sidebar-content">
+              {sidebarRoutes.map((route, index) => {
+                return (
+                  <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+                );
+              })}
+            </div>
+            <footer className="sidebar-footer">
+              <img src={Smilies} alt="fireSpot" className="smilies-footer" />
+            </footer>
+          </div>
+          <div className="main-content">
             <Map />
           </div>
-        ) : (
-          <div className="main-layout-container">
-            <div className="sidebar-content">
-              {sidebarRoutes.map((route, index) => (
-                <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-              ))}
-            </div>
-            <div className="main-content">
-              <Map />
-            </div>
-          </div>
-        ))}
+        </div>
+      )}
     </>
   );
 };

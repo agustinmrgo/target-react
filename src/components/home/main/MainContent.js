@@ -6,6 +6,7 @@ import MusicTopicIcon from 'assets/music_topic_icon.png';
 import TravelTopicIcon from 'assets/travel_topic_icon.png';
 import { useSession } from 'hooks';
 
+import Navbar from 'components/common/Navbar';
 import './mainContent.scss';
 
 const MainContent = () => {
@@ -13,10 +14,8 @@ const MainContent = () => {
 
   return (
     <div className="main-container">
-      {/* <h2 className="main-title">
-        <FormattedMessage id="home.bold_target" />
-      </h2> */}
-      <div className="home-body">
+      <Navbar title={<FormattedMessage id="home.bold_target" />} className="navbar-white" />
+      <div className="flex-column-centered content-body">
         <div className="profile-container">
           <div className="profile-picture-background">
             <ProfilePlaceholder />
@@ -60,9 +59,6 @@ const MainContent = () => {
           </ul>
         </div>
       </div>
-      {/* <footer>
-        <img src={Smilies} alt="fireSpot" className="smilies-footer" />
-      </footer> */}
     </div>
   );
 };
