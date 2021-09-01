@@ -1,20 +1,25 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import { ReactComponent as ProfilePlaceholder } from 'assets/profile_placeholder.svg';
 import FootballTopicIcon from 'assets/football_topic_icon.png';
 import MusicTopicIcon from 'assets/music_topic_icon.png';
 import TravelTopicIcon from 'assets/travel_topic_icon.png';
 import { useSession } from 'hooks';
 
-import Navbar from 'components/common/Navbar';
+import Navbar from 'components/common/Navbar/Navbar';
 import './mainContent.scss';
 
 const MainContent = () => {
+  const intl = useIntl();
   const { user } = useSession();
 
   return (
-    <div className="main-container">
-      <Navbar title={<FormattedMessage id="home.bold_target" />} className="navbar-white" />
+    <>
+      <Navbar
+        title={<FormattedMessage id="home.bold_target" />}
+        className="navbar_white"
+        showMenuIcon
+      />
       <div className="flex-column-centered content-body">
         <div className="profile-container">
           <div className="profile-picture-background">
@@ -39,19 +44,19 @@ const MainContent = () => {
           </h6>
           <ul className="home-topics-list">
             <li>
-              <img src={FootballTopicIcon} alt="fireSpot" />
+              <img src={FootballTopicIcon} alt={intl.formatMessage({ id: 'alt.football' })} />
               <span>
                 <FormattedMessage id="topic.football" />
               </span>
             </li>
             <li>
-              <img src={TravelTopicIcon} alt="fireSpot" />
+              <img src={TravelTopicIcon} alt={intl.formatMessage({ id: 'alt.travel' })} />
               <span>
                 <FormattedMessage id="topic.travel" />
               </span>
             </li>
             <li>
-              <img src={MusicTopicIcon} alt="fireSpot" />
+              <img src={MusicTopicIcon} alt={intl.formatMessage({ id: 'alt.music' })} />
               <span>
                 <FormattedMessage id="topic.music" />
               </span>
@@ -59,7 +64,7 @@ const MainContent = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -70,5 +70,15 @@ export default {
   'radius.presence': 'You should indicate the radius for your target',
   'title.presence': 'You should indicate a title for your target',
   'topic.presence': 'You should select a topic for your target',
-  'coordinates.presence': "You should click on the map to set your target's location"
+  'coordinates.presence': "You should click on the map to set your target's location",
+
+  // alt
+  'alt.back': 'Go back to previous page',
+  'alt.map': 'Go to map',
+  'alt.menu': 'Open menu',
+  'alt.smilies': 'Smilies image',
+  'alt.football': 'Football topic icon',
+  'alt.travel': 'Travel topic icon',
+  'alt.music': 'Music topic icon',
+  'alt.target': 'Target icon'
 };

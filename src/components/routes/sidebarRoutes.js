@@ -4,6 +4,7 @@ import routesPaths from 'constants/routesPaths';
 import WelcomeContent from 'components/home/welcome/WelcomeContent';
 import MainContent from 'components/home/main/MainContent';
 import CreateTargetForm from 'components/target/CreateTargetForm';
+import Map from 'components/common/Map/Map';
 
 const sidebarRoutes = [
   {
@@ -21,6 +22,11 @@ const sidebarRoutes = [
   {
     path: routesPaths.createTarget,
     component: <CreateTargetForm />,
+    private: true
+  },
+  {
+    path: routesPaths.map,
+    component: <Map />,
     private: true
   }
 ];

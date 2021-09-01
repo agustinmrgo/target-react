@@ -1,7 +1,32 @@
+@import '../../../styles/colors.scss';
+
+.map-container {
+  width: 100%;
+  overflow: hidden;
+}
+
 .current-location-marker {
   position: fixed;
 }
 
 .current-location-icon {
   transform: translate(14%, -30%);
+}
+
+.floating-icon {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  z-index: 99;
+}
+
+.home-icon-background {
+  border-radius: 50%;
+  padding: 1rem 1rem 0.8rem;
+  background-color: $primary-blue;
+  cursor: pointer;
+}
+
+.home-icon {
+  width: 35px;
 }

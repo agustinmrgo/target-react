@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { number, shape, bool } from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import GoogleMapReact from 'google-map-react';
 import Loading from 'components/common/Loading';
 import { targetIcon } from 'utils/helpers';
+
 import { yellowTargetBackground } from 'constants/colors';
 import routesPaths from 'constants/routesPaths';
 import { FULFILLED, PENDING, REJECTED } from 'constants/actionStatusConstants';
 
-import { useDispatch, useTarget, useStatus } from 'hooks';
+import { useDispatch, useTarget, useStatus, useResponsive } from 'hooks';
 import {
   getAllTargets,
   setCurrentTargetCoordinates,
@@ -18,6 +19,7 @@ import {
 
 import { ReactComponent as LocationOval } from 'assets/oval_location.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon_location.svg';
+import ProfileIcon from 'assets/profile_placeholder.svg';
 import { DEFAULT_COORDINATES } from 'constants/constants';
 import './map.scss';
 
@@ -27,6 +29,7 @@ const Map = ({
   enableCurrentLocationMarker = true,
   ...props
 }) => {
+  const intl = useIntl();
   const [locationStatus, setLocationStatus] = useState('');
   const [currentLocation, setCurrentLocation] = useState(defaultCenter);
   const getAllTargetsRequest = useDispatch(getAllTargets);
@@ -35,6 +38,7 @@ const Map = ({
   const { status: getAllTargetsStatus, error: getAllTargetsError } = useStatus(getAllTargets);
   const { status: createTargetStatus, error: createTargetError } = useStatus(createTarget);
   const history = useHistory();
+  const isTabletOrMobile = useResponsive();
 
   useEffect(() => {
     const success = ({ coords: { latitude, longitude } }) => {
@@ -52,10 +56,6 @@ const Map = ({
   }, [createTargetStatus, getAllTargetsRequest]);
 
   const handleTargetsCircles = ({ map, maps }) => {
-    // console.log(
-    //   '🚀 ~ file: Map.js ~ maps.ControlPosition.BOTTOM_CENTER',
-    //   maps.ControlPosition.BOTTOM_CENTER
-    // );
     return targets.map(({ target: { lat, lng, radius, topicId } }) => {
       return [
         new maps.Circle({
@@ -86,10 +86,12 @@ const Map = ({
     }
   };
 
+  const handleHomeClick = () => history.push(routesPaths.index);
+
   const createMapOptions = { disableDefaultUI: true, zoomControl: true };
 
   return (
-    <>
+    <div className="map-container">
       {getAllTargetsStatus === FULFILLED && (
         <GoogleMapReact
           defaultCenter={defaultCenter}
@@ -109,6 +111,15 @@ const Map = ({
           )}
         </GoogleMapReact>
       )}
+      {isTabletOrMobile && (
+        <div className="home-icon-background floating-icon" onClick={handleHomeClick}>
+          <img
+            src={ProfileIcon}
+            alt={intl.formatMessage({ id: 'alt.smilies' })}
+            className="home-icon"
+          />
+        </div>
+      )}
       {getAllTargetsStatus === PENDING && <Loading />}
       {(getAllTargetsStatus === REJECTED || createTargetStatus === REJECTED) && (
         <div className="error-message">
@@ -118,7 +129,7 @@ const Map = ({
           </p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

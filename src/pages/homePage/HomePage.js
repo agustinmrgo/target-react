@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSession } from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useIntl } from 'react-intl';
 
 import routes from 'constants/routesPaths';
 
@@ -12,6 +13,7 @@ import Smilies from 'assets/smilies.svg';
 import './homePage.scss';
 
 const HomePage = () => {
+  const intl = useIntl();
   const { user, authenticated } = useSession();
   const [cookies, setCookie] = useCookies(['isFirstTimeUser']);
   const history = useHistory();
@@ -28,15 +30,17 @@ const HomePage = () => {
       {user?.email && (
         <div className="main-layout-container">
           <div className="flex-column-centered sidebar-container">
-            <div className="sidebar-content">
-              {sidebarRoutes.map((route, index) => {
-                return (
-                  <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
-                );
-              })}
-            </div>
+            {sidebarRoutes.map((route, index) => {
+              return (
+                <RouteFromPath key={`route${index}`} {...route} authenticated={authenticated} />
+              );
+            })}
             <footer className="sidebar-footer">
-              <img src={Smilies} alt="fireSpot" className="smilies-footer" />
+              <img
+                src={Smilies}
+                alt={intl.formatMessage({ id: 'alt.smilies' })}
+                className="smilies-footer"
+              />
             </footer>
           </div>
           <div className="main-content">

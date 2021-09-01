@@ -6,7 +6,7 @@ import { REJECTED, PENDING } from 'constants/actionStatusConstants';
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
 import Select from 'components/common/Select';
-import Navbar from 'components/common/Navbar';
+import Navbar from 'components/common/Navbar/Navbar';
 import { createTarget as targetValidations } from 'utils/constraints';
 import {
   useStatus,
@@ -110,8 +110,16 @@ const CreateTargetForm = () => {
 
   return (
     <>
-      <Navbar className="navbar-blue" title={<FormattedMessage id="target.navbar" />} />
-      <img src={TargetIcon} alt="targetIcon" className="target-icon" />
+      <Navbar
+        className="navbar_blue"
+        title={<FormattedMessage id="target.navbar" />}
+        showBackArrow
+      />
+      <img
+        src={TargetIcon}
+        alt={intl.formatMessage({ id: 'alt.target' })}
+        className="target-icon"
+      />
       <p className="target-icon-label">
         <FormattedMessage id="target.header" />
       </p>

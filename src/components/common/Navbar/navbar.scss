@@ -1,0 +1,37 @@
+@import '../../../styles/colors.scss';
+
+.navbar {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  min-height: 7rem;
+  padding: 2rem;
+
+  &_white {
+    background-color: $white;
+    color: $black;
+    *:nth-child(3) {
+      filter: invert(100%);
+    }
+  }
+
+  &_blue {
+    background-color: $primary-blue;
+    color: $white;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.7rem;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    margin: auto;
+  }
+}

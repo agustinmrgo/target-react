@@ -3,7 +3,8 @@ const routes = {
   login: '/login',
   signUp: '/sign-up',
   welcome: '/welcome',
-  createTarget: '/create-target'
+  createTarget: '/create-target',
+  map: '/map'
 };
 
 export default routes;
