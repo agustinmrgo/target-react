@@ -4,7 +4,6 @@ import routesPaths from 'constants/routesPaths';
 import HomePage from 'pages/homePage/HomePage';
 import LoginPage from 'pages/loginPage/LoginPage';
 import SignUpPage from 'pages/signupPage/SignUpPage';
-// import Map from 'components/common/Map/Map';
 import NotFoundPage from 'pages/NotFoundPage';
 
 const routes = [
@@ -23,11 +22,6 @@ const routes = [
     component: <HomePage />,
     private: true
   },
-  // {
-  //   path: routesPaths.map,
-  //   component: <Map />,
-  //   private: true
-  // },
   {
     component: <NotFoundPage />
   }
